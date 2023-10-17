@@ -6,6 +6,8 @@
 //
 
 import Foundation
+import SwiftUI
+
 
 //this is a struct that will store a photo and a discription
 struct CoupleMemory: Identifiable {
@@ -13,8 +15,4 @@ struct CoupleMemory: Identifiable {
     var image: CoupleImage
     var description: String
     var memoryDate: Date
-}
-//this is a struct where the images will be stored
-struct CoupleImage {
-    var imageData: Data
 }

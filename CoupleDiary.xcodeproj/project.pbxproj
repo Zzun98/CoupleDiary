@@ -16,6 +16,7 @@
 		08E9B3432AD8B092002EEE7B /* CoupleDiaryUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08E9B3422AD8B092002EEE7B /* CoupleDiaryUITestsLaunchTests.swift */; };
 		324B01DF2ADE331C00DAF382 /* CoupleDiaryMain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 324B01DE2ADE331C00DAF382 /* CoupleDiaryMain.swift */; };
 		324B01E12ADE33E200DAF382 /* CoupleMemory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 324B01E02ADE33E200DAF382 /* CoupleMemory.swift */; };
+		324B01E32ADE3F6400DAF382 /* CoupleImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 324B01E22ADE3F6400DAF382 /* CoupleImage.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,6 +49,7 @@
 		08E9B3422AD8B092002EEE7B /* CoupleDiaryUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoupleDiaryUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		324B01DE2ADE331C00DAF382 /* CoupleDiaryMain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoupleDiaryMain.swift; sourceTree = "<group>"; };
 		324B01E02ADE33E200DAF382 /* CoupleMemory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoupleMemory.swift; sourceTree = "<group>"; };
+		324B01E22ADE3F6400DAF382 /* CoupleImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoupleImage.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -137,6 +139,7 @@
 			isa = PBXGroup;
 			children = (
 				324B01E02ADE33E200DAF382 /* CoupleMemory.swift */,
+				324B01E22ADE3F6400DAF382 /* CoupleImage.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -279,6 +282,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				324B01E32ADE3F6400DAF382 /* CoupleImage.swift in Sources */,
 				08E9B3282AD8B08F002EEE7B /* ContentView.swift in Sources */,
 				324B01DF2ADE331C00DAF382 /* CoupleDiaryMain.swift in Sources */,
 				324B01E12ADE33E200DAF382 /* CoupleMemory.swift in Sources */,
@@ -446,6 +450,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"CoupleDiary/Preview Content\"";
+				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -474,6 +479,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"CoupleDiary/Preview Content\"";
+				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
