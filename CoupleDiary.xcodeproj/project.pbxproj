@@ -14,6 +14,8 @@
 		08E9B3372AD8B092002EEE7B /* CoupleDiaryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08E9B3362AD8B092002EEE7B /* CoupleDiaryTests.swift */; };
 		08E9B3412AD8B092002EEE7B /* CoupleDiaryUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08E9B3402AD8B092002EEE7B /* CoupleDiaryUITests.swift */; };
 		08E9B3432AD8B092002EEE7B /* CoupleDiaryUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08E9B3422AD8B092002EEE7B /* CoupleDiaryUITestsLaunchTests.swift */; };
+		324B01DF2ADE331C00DAF382 /* CoupleDiaryMain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 324B01DE2ADE331C00DAF382 /* CoupleDiaryMain.swift */; };
+		324B01E12ADE33E200DAF382 /* CoupleMemory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 324B01E02ADE33E200DAF382 /* CoupleMemory.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +46,8 @@
 		08E9B33C2AD8B092002EEE7B /* CoupleDiaryUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CoupleDiaryUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		08E9B3402AD8B092002EEE7B /* CoupleDiaryUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoupleDiaryUITests.swift; sourceTree = "<group>"; };
 		08E9B3422AD8B092002EEE7B /* CoupleDiaryUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoupleDiaryUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		324B01DE2ADE331C00DAF382 /* CoupleDiaryMain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoupleDiaryMain.swift; sourceTree = "<group>"; };
+		324B01E02ADE33E200DAF382 /* CoupleMemory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoupleMemory.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,6 +98,8 @@
 		08E9B3242AD8B08F002EEE7B /* CoupleDiary */ = {
 			isa = PBXGroup;
 			children = (
+				324B01DD2ADE326A00DAF382 /* ViewModels */,
+				324B01DC2ADE326100DAF382 /* Model */,
 				08E9B3252AD8B08F002EEE7B /* CoupleDiaryApp.swift */,
 				08E9B3272AD8B08F002EEE7B /* ContentView.swift */,
 				08E9B3292AD8B091002EEE7B /* Assets.xcassets */,
@@ -125,6 +131,22 @@
 				08E9B3422AD8B092002EEE7B /* CoupleDiaryUITestsLaunchTests.swift */,
 			);
 			path = CoupleDiaryUITests;
+			sourceTree = "<group>";
+		};
+		324B01DC2ADE326100DAF382 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				324B01E02ADE33E200DAF382 /* CoupleMemory.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		324B01DD2ADE326A00DAF382 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				324B01DE2ADE331C00DAF382 /* CoupleDiaryMain.swift */,
+			);
+			path = ViewModels;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -258,6 +280,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				08E9B3282AD8B08F002EEE7B /* ContentView.swift in Sources */,
+				324B01DF2ADE331C00DAF382 /* CoupleDiaryMain.swift in Sources */,
+				324B01E12ADE33E200DAF382 /* CoupleMemory.swift in Sources */,
 				08E9B3262AD8B08F002EEE7B /* CoupleDiaryApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
