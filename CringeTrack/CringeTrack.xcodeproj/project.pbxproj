@@ -1,0 +1,647 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		083E9DD72ADB8BFA00E7444A /* CringeTrackApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 083E9DD62ADB8BFA00E7444A /* CringeTrackApp.swift */; };
+		083E9DD92ADB8BFA00E7444A /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 083E9DD82ADB8BFA00E7444A /* ContentView.swift */; };
+		083E9DDB2ADB8BFB00E7444A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 083E9DDA2ADB8BFB00E7444A /* Assets.xcassets */; };
+		083E9DDE2ADB8BFB00E7444A /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 083E9DDD2ADB8BFB00E7444A /* Preview Assets.xcassets */; };
+		083E9DE82ADB8BFB00E7444A /* CringeTrackTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 083E9DE72ADB8BFB00E7444A /* CringeTrackTests.swift */; };
+		083E9DF22ADB8BFB00E7444A /* CringeTrackUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 083E9DF12ADB8BFB00E7444A /* CringeTrackUITests.swift */; };
+		083E9DF42ADB8BFB00E7444A /* CringeTrackUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 083E9DF32ADB8BFB00E7444A /* CringeTrackUITestsLaunchTests.swift */; };
+		083E9E042ADC684F00E7444A /* LogoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 083E9E032ADC684F00E7444A /* LogoView.swift */; };
+		083E9E062ADC9F2600E7444A /* DayWeMetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 083E9E052ADC9F2600E7444A /* DayWeMetView.swift */; };
+		083E9E082ADCDE0B00E7444A /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 083E9E072ADCDE0B00E7444A /* HomeView.swift */; };
+		083E9E0A2ADCDE2500E7444A /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 083E9E092ADCDE2500E7444A /* CalendarView.swift */; };
+		083E9E0C2ADCDE4C00E7444A /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 083E9E0B2ADCDE4C00E7444A /* SettingsView.swift */; };
+		083E9E102ADD1CD100E7444A /* DaysPassed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 083E9E0F2ADD1CD100E7444A /* DaysPassed.swift */; };
+		087D87DF2ADDAC2100367925 /* AlbumView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 087D87DE2ADDAC2100367925 /* AlbumView.swift */; };
+		087D87E12ADE59B900367925 /* NotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 087D87E02ADE59B900367925 /* NotificationView.swift */; };
+		087D87ED2ADF2EE400367925 /* CalendarHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 087D87EC2ADF2EE400367925 /* CalendarHelper.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		083E9DE42ADB8BFB00E7444A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 083E9DCB2ADB8BF900E7444A /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 083E9DD22ADB8BF900E7444A;
+			remoteInfo = CringeTrack;
+		};
+		083E9DEE2ADB8BFB00E7444A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 083E9DCB2ADB8BF900E7444A /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 083E9DD22ADB8BF900E7444A;
+			remoteInfo = CringeTrack;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		083E9DD32ADB8BF900E7444A /* CringeTrack.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CringeTrack.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		083E9DD62ADB8BFA00E7444A /* CringeTrackApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CringeTrackApp.swift; sourceTree = "<group>"; };
+		083E9DD82ADB8BFA00E7444A /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		083E9DDA2ADB8BFB00E7444A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		083E9DDD2ADB8BFB00E7444A /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		083E9DE32ADB8BFB00E7444A /* CringeTrackTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CringeTrackTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		083E9DE72ADB8BFB00E7444A /* CringeTrackTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CringeTrackTests.swift; sourceTree = "<group>"; };
+		083E9DED2ADB8BFB00E7444A /* CringeTrackUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CringeTrackUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		083E9DF12ADB8BFB00E7444A /* CringeTrackUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CringeTrackUITests.swift; sourceTree = "<group>"; };
+		083E9DF32ADB8BFB00E7444A /* CringeTrackUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CringeTrackUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		083E9E032ADC684F00E7444A /* LogoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoView.swift; sourceTree = "<group>"; };
+		083E9E052ADC9F2600E7444A /* DayWeMetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayWeMetView.swift; sourceTree = "<group>"; };
+		083E9E072ADCDE0B00E7444A /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		083E9E092ADCDE2500E7444A /* CalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
+		083E9E0B2ADCDE4C00E7444A /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		083E9E0F2ADD1CD100E7444A /* DaysPassed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DaysPassed.swift; sourceTree = "<group>"; };
+		087D87DE2ADDAC2100367925 /* AlbumView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumView.swift; sourceTree = "<group>"; };
+		087D87E02ADE59B900367925 /* NotificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationView.swift; sourceTree = "<group>"; };
+		087D87EC2ADF2EE400367925 /* CalendarHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarHelper.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		083E9DD02ADB8BF900E7444A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		083E9DE02ADB8BFB00E7444A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		083E9DEA2ADB8BFB00E7444A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		083E9DCA2ADB8BF900E7444A = {
+			isa = PBXGroup;
+			children = (
+				083E9DD52ADB8BF900E7444A /* CringeTrack */,
+				083E9DE62ADB8BFB00E7444A /* CringeTrackTests */,
+				083E9DF02ADB8BFB00E7444A /* CringeTrackUITests */,
+				083E9DD42ADB8BF900E7444A /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		083E9DD42ADB8BF900E7444A /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				083E9DD32ADB8BF900E7444A /* CringeTrack.app */,
+				083E9DE32ADB8BFB00E7444A /* CringeTrackTests.xctest */,
+				083E9DED2ADB8BFB00E7444A /* CringeTrackUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		083E9DD52ADB8BF900E7444A /* CringeTrack */ = {
+			isa = PBXGroup;
+			children = (
+				083E9DD62ADB8BFA00E7444A /* CringeTrackApp.swift */,
+				083E9E022ADC67F400E7444A /* Model */,
+				083E9E002ADC676C00E7444A /* View */,
+				083E9E012ADC679600E7444A /* ViewModel */,
+				083E9DDA2ADB8BFB00E7444A /* Assets.xcassets */,
+				083E9DDC2ADB8BFB00E7444A /* Preview Content */,
+			);
+			path = CringeTrack;
+			sourceTree = "<group>";
+		};
+		083E9DDC2ADB8BFB00E7444A /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				083E9DDD2ADB8BFB00E7444A /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		083E9DE62ADB8BFB00E7444A /* CringeTrackTests */ = {
+			isa = PBXGroup;
+			children = (
+				083E9DE72ADB8BFB00E7444A /* CringeTrackTests.swift */,
+			);
+			path = CringeTrackTests;
+			sourceTree = "<group>";
+		};
+		083E9DF02ADB8BFB00E7444A /* CringeTrackUITests */ = {
+			isa = PBXGroup;
+			children = (
+				083E9DF12ADB8BFB00E7444A /* CringeTrackUITests.swift */,
+				083E9DF32ADB8BFB00E7444A /* CringeTrackUITestsLaunchTests.swift */,
+			);
+			path = CringeTrackUITests;
+			sourceTree = "<group>";
+		};
+		083E9E002ADC676C00E7444A /* View */ = {
+			isa = PBXGroup;
+			children = (
+				083E9DD82ADB8BFA00E7444A /* ContentView.swift */,
+				083E9E032ADC684F00E7444A /* LogoView.swift */,
+				083E9E052ADC9F2600E7444A /* DayWeMetView.swift */,
+				083E9E092ADCDE2500E7444A /* CalendarView.swift */,
+				083E9E072ADCDE0B00E7444A /* HomeView.swift */,
+				083E9E0B2ADCDE4C00E7444A /* SettingsView.swift */,
+				087D87E02ADE59B900367925 /* NotificationView.swift */,
+				087D87DE2ADDAC2100367925 /* AlbumView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		083E9E012ADC679600E7444A /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				087D87EC2ADF2EE400367925 /* CalendarHelper.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		083E9E022ADC67F400E7444A /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				083E9E0F2ADD1CD100E7444A /* DaysPassed.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		083E9DD22ADB8BF900E7444A /* CringeTrack */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 083E9DF72ADB8BFB00E7444A /* Build configuration list for PBXNativeTarget "CringeTrack" */;
+			buildPhases = (
+				083E9DCF2ADB8BF900E7444A /* Sources */,
+				083E9DD02ADB8BF900E7444A /* Frameworks */,
+				083E9DD12ADB8BF900E7444A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = CringeTrack;
+			productName = CringeTrack;
+			productReference = 083E9DD32ADB8BF900E7444A /* CringeTrack.app */;
+			productType = "com.apple.product-type.application";
+		};
+		083E9DE22ADB8BFB00E7444A /* CringeTrackTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 083E9DFA2ADB8BFB00E7444A /* Build configuration list for PBXNativeTarget "CringeTrackTests" */;
+			buildPhases = (
+				083E9DDF2ADB8BFB00E7444A /* Sources */,
+				083E9DE02ADB8BFB00E7444A /* Frameworks */,
+				083E9DE12ADB8BFB00E7444A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				083E9DE52ADB8BFB00E7444A /* PBXTargetDependency */,
+			);
+			name = CringeTrackTests;
+			productName = CringeTrackTests;
+			productReference = 083E9DE32ADB8BFB00E7444A /* CringeTrackTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		083E9DEC2ADB8BFB00E7444A /* CringeTrackUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 083E9DFD2ADB8BFB00E7444A /* Build configuration list for PBXNativeTarget "CringeTrackUITests" */;
+			buildPhases = (
+				083E9DE92ADB8BFB00E7444A /* Sources */,
+				083E9DEA2ADB8BFB00E7444A /* Frameworks */,
+				083E9DEB2ADB8BFB00E7444A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				083E9DEF2ADB8BFB00E7444A /* PBXTargetDependency */,
+			);
+			name = CringeTrackUITests;
+			productName = CringeTrackUITests;
+			productReference = 083E9DED2ADB8BFB00E7444A /* CringeTrackUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		083E9DCB2ADB8BF900E7444A /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1500;
+				LastUpgradeCheck = 1500;
+				TargetAttributes = {
+					083E9DD22ADB8BF900E7444A = {
+						CreatedOnToolsVersion = 15.0;
+					};
+					083E9DE22ADB8BFB00E7444A = {
+						CreatedOnToolsVersion = 15.0;
+						TestTargetID = 083E9DD22ADB8BF900E7444A;
+					};
+					083E9DEC2ADB8BFB00E7444A = {
+						CreatedOnToolsVersion = 15.0;
+						TestTargetID = 083E9DD22ADB8BF900E7444A;
+					};
+				};
+			};
+			buildConfigurationList = 083E9DCE2ADB8BF900E7444A /* Build configuration list for PBXProject "CringeTrack" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 083E9DCA2ADB8BF900E7444A;
+			productRefGroup = 083E9DD42ADB8BF900E7444A /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				083E9DD22ADB8BF900E7444A /* CringeTrack */,
+				083E9DE22ADB8BFB00E7444A /* CringeTrackTests */,
+				083E9DEC2ADB8BFB00E7444A /* CringeTrackUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		083E9DD12ADB8BF900E7444A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				083E9DDE2ADB8BFB00E7444A /* Preview Assets.xcassets in Resources */,
+				083E9DDB2ADB8BFB00E7444A /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		083E9DE12ADB8BFB00E7444A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		083E9DEB2ADB8BFB00E7444A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		083E9DCF2ADB8BF900E7444A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				083E9E0C2ADCDE4C00E7444A /* SettingsView.swift in Sources */,
+				083E9E062ADC9F2600E7444A /* DayWeMetView.swift in Sources */,
+				083E9DD92ADB8BFA00E7444A /* ContentView.swift in Sources */,
+				083E9E0A2ADCDE2500E7444A /* CalendarView.swift in Sources */,
+				083E9E042ADC684F00E7444A /* LogoView.swift in Sources */,
+				083E9E082ADCDE0B00E7444A /* HomeView.swift in Sources */,
+				083E9E102ADD1CD100E7444A /* DaysPassed.swift in Sources */,
+				087D87ED2ADF2EE400367925 /* CalendarHelper.swift in Sources */,
+				087D87DF2ADDAC2100367925 /* AlbumView.swift in Sources */,
+				083E9DD72ADB8BFA00E7444A /* CringeTrackApp.swift in Sources */,
+				087D87E12ADE59B900367925 /* NotificationView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		083E9DDF2ADB8BFB00E7444A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				083E9DE82ADB8BFB00E7444A /* CringeTrackTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		083E9DE92ADB8BFB00E7444A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				083E9DF42ADB8BFB00E7444A /* CringeTrackUITestsLaunchTests.swift in Sources */,
+				083E9DF22ADB8BFB00E7444A /* CringeTrackUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		083E9DE52ADB8BFB00E7444A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 083E9DD22ADB8BF900E7444A /* CringeTrack */;
+			targetProxy = 083E9DE42ADB8BFB00E7444A /* PBXContainerItemProxy */;
+		};
+		083E9DEF2ADB8BFB00E7444A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 083E9DD22ADB8BF900E7444A /* CringeTrack */;
+			targetProxy = 083E9DEE2ADB8BFB00E7444A /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		083E9DF52ADB8BFB00E7444A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		083E9DF62ADB8BFB00E7444A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		083E9DF82ADB8BFB00E7444A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"CringeTrack/Preview Content\"";
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = UTS.edu.au.CringeTrack;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		083E9DF92ADB8BFB00E7444A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"CringeTrack/Preview Content\"";
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = UTS.edu.au.CringeTrack;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		083E9DFB2ADB8BFB00E7444A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = UTS.edu.au.CringeTrackTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CringeTrack.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/CringeTrack";
+			};
+			name = Debug;
+		};
+		083E9DFC2ADB8BFB00E7444A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = UTS.edu.au.CringeTrackTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CringeTrack.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/CringeTrack";
+			};
+			name = Release;
+		};
+		083E9DFE2ADB8BFB00E7444A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = UTS.edu.au.CringeTrackUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = CringeTrack;
+			};
+			name = Debug;
+		};
+		083E9DFF2ADB8BFB00E7444A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = UTS.edu.au.CringeTrackUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = CringeTrack;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		083E9DCE2ADB8BF900E7444A /* Build configuration list for PBXProject "CringeTrack" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				083E9DF52ADB8BFB00E7444A /* Debug */,
+				083E9DF62ADB8BFB00E7444A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		083E9DF72ADB8BFB00E7444A /* Build configuration list for PBXNativeTarget "CringeTrack" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				083E9DF82ADB8BFB00E7444A /* Debug */,
+				083E9DF92ADB8BFB00E7444A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		083E9DFA2ADB8BFB00E7444A /* Build configuration list for PBXNativeTarget "CringeTrackTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				083E9DFB2ADB8BFB00E7444A /* Debug */,
+				083E9DFC2ADB8BFB00E7444A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		083E9DFD2ADB8BFB00E7444A /* Build configuration list for PBXNativeTarget "CringeTrackUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				083E9DFE2ADB8BFB00E7444A /* Debug */,
+				083E9DFF2ADB8BFB00E7444A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 083E9DCB2ADB8BF900E7444A /* Project object */;
+}
