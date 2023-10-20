@@ -16,7 +16,7 @@ enum TransferError: Error {
 }
 
 struct CoupleImage: Transferable {
-    var imageData: Image
+    let image: Image
     
     static var transferRepresentation: some TransferRepresentation {
         //handles the import and export process of images
@@ -29,16 +29,10 @@ struct CoupleImage: Transferable {
                 }
                 //allocates the image on this struct
                 let image = Image(uiImage: uiImage)
-                return CoupleImage(imageData: image)
+                return CoupleImage(image: image)
             #else
                 throw TransferError.importFailed
             #endif
         }
-
     }
-
-}
-
-extension CoupleImage {
-  
 }
