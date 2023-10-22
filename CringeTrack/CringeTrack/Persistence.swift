@@ -32,10 +32,29 @@ struct PersistenceController {
     let container: NSPersistentContainer
 
     init(inMemory: Bool = false) {
-        container = NSPersistentContainer(name: "CoreDataDemo")
+        container = NSPersistentCloudKitContainer(name: "CringeTrack")
         if inMemory {
             container.persistentStoreDescriptions.first!.url = URL(fileURLWithPath: "/dev/null")
         }
+        //these are seperate store descriptions for use in CloudKit and local CoreData.
+        //stores local store descriptions
+        let localStoreLocation                  = URL(fileURLWithPath: "/path/to/local.store")
+        let localStoreDescription               = NSPersistentStoreDescription(url: localStoreLocation)
+        localStoreDescription.configuration     = "Local"
+        
+        //this is for the cloud kit local store
+        let cloudKitStoreLocation                = URL(fileURLWithPath: "/path/to/cloud.store")
+        let cloudKitStoreDescription             = NSPersistentStoreDescription(url: cloudKitStoreLocation)
+        cloudKitStoreDescription.configuration   = "Cloud"
+        
+        //allocates the cloudkit container
+        cloudKitStoreDescription.cloudKitContainerOptions = NSPersistentCloudKitContainerOptions(containerIdentifier: "uts.edu.au.CringeTrack")
+        //updates container list
+        container.persistentStoreDescriptions = [
+            cloudKitStoreDescription,
+            localStoreDescription
+        ]
+        
         container.loadPersistentStores(completionHandler: { (storeDescription, error) in
             if let error = error as NSError? {
                 // Replace this implementation with code to handle the error appropriately.
