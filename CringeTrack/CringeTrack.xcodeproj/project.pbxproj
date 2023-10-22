@@ -28,6 +28,7 @@
 		327C98C52AE269210030CDBE /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 327C98BE2AE268F30030CDBE /* CoreData.framework */; };
 		327C98C62AE269210030CDBE /* CoreData.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 327C98BE2AE268F30030CDBE /* CoreData.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		327C98C92AE26DA20030CDBE /* ClingeTrack.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 327C98C72AE26DA20030CDBE /* ClingeTrack.xcdatamodeld */; };
+		3287E4EE2AE4EB870010C1C8 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3287E4ED2AE4EB870010C1C8 /* Persistence.swift */; };
 		32DED41F2ADF69B6009981B2 /* CoupleImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32DED41D2ADF69B6009981B2 /* CoupleImage.swift */; };
 		32DED4202ADF69B6009981B2 /* CoupleMemory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32DED41E2ADF69B6009981B2 /* CoupleMemory.swift */; };
 		32DED4222ADF6A4E009981B2 /* CoupleDiaryMain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32DED4212ADF6A4E009981B2 /* CoupleDiaryMain.swift */; };
@@ -89,6 +90,7 @@
 		327C98BE2AE268F30030CDBE /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		327C98C02AE2690B0030CDBE /* ClockKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ClockKit.framework; path = System/Library/Frameworks/ClockKit.framework; sourceTree = SDKROOT; };
 		327C98C82AE26DA20030CDBE /* ClingeTrack.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ClingeTrack.xcdatamodel; sourceTree = "<group>"; };
+		3287E4ED2AE4EB870010C1C8 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
 		32DED41D2ADF69B6009981B2 /* CoupleImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoupleImage.swift; sourceTree = "<group>"; };
 		32DED41E2ADF69B6009981B2 /* CoupleMemory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoupleMemory.swift; sourceTree = "<group>"; };
 		32DED4212ADF6A4E009981B2 /* CoupleDiaryMain.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CoupleDiaryMain.swift; path = ../../../../../Downloads/CoupleDiaryMain.swift; sourceTree = "<group>"; };
@@ -153,6 +155,7 @@
 				083E9DDA2ADB8BFB00E7444A /* Assets.xcassets */,
 				083E9DDC2ADB8BFB00E7444A /* Preview Content */,
 				327C98C72AE26DA20030CDBE /* ClingeTrack.xcdatamodeld */,
+				3287E4ED2AE4EB870010C1C8 /* Persistence.swift */,
 			);
 			path = CringeTrack;
 			sourceTree = "<group>";
@@ -357,6 +360,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				083E9E0C2ADCDE4C00E7444A /* SettingsView.swift in Sources */,
+				3287E4EE2AE4EB870010C1C8 /* Persistence.swift in Sources */,
 				083E9E062ADC9F2600E7444A /* DayWeMetView.swift in Sources */,
 				32DED4222ADF6A4E009981B2 /* CoupleDiaryMain.swift in Sources */,
 				083E9DD92ADB8BFA00E7444A /* ContentView.swift in Sources */,
