@@ -7,6 +7,7 @@
 
 //import Foundation
 import CoreData
+import CloudKit
 
 struct PersistenceController {
     static let shared = PersistenceController()
@@ -36,6 +37,7 @@ struct PersistenceController {
         if inMemory {
             container.persistentStoreDescriptions.first!.url = URL(fileURLWithPath: "/dev/null")
         }
+        /*
         //these are seperate store descriptions for use in CloudKit and local CoreData.
         //stores local store descriptions
         let localStoreLocation                  = URL(fileURLWithPath: "/path/to/local.store")
@@ -48,12 +50,12 @@ struct PersistenceController {
         cloudKitStoreDescription.configuration   = "Cloud"
         
         //allocates the cloudkit container
-        cloudKitStoreDescription.cloudKitContainerOptions = NSPersistentCloudKitContainerOptions(containerIdentifier: "uts.edu.au.CringeTrack")
+        cloudKitStoreDescription.cloudKitContainerOptions = NSPersistentCloudKitContainerOptions(containerIdentifier: "UTS.edu.au.CringeTrack")
         //updates container list
         container.persistentStoreDescriptions = [
             cloudKitStoreDescription,
             localStoreDescription
-        ]
+         ]*/
         
         container.loadPersistentStores(completionHandler: { (storeDescription, error) in
             if let error = error as NSError? {

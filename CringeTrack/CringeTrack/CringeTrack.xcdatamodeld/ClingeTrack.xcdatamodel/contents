@@ -3,6 +3,7 @@
     <entity name="Memory" representedClassName="Memory" syncable="YES" codeGenerationType="class">
         <attribute name="imageData" optional="YES" attributeType="Binary"/>
         <attribute name="memoryDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="memoryDescription" optional="YES" attributeType="String"/>
     </entity>
     <entity name="Onboarding" representedClassName="Onboarding" syncable="YES" codeGenerationType="class">
         <attribute name="dateMet" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
@@ -11,4 +12,9 @@
         <attribute name="dateOfBirth" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="name" optional="YES" attributeType="String"/>
     </entity>
+    <configuration name="Cloud" usedWithCloudKit="YES">
+        <memberEntity name="Memory"/>
+        <memberEntity name="Onboarding"/>
+        <memberEntity name="Partner"/>
+    </configuration>
 </model>

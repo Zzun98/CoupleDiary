@@ -23,10 +23,6 @@
 		087D87DF2ADDAC2100367925 /* AlbumView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 087D87DE2ADDAC2100367925 /* AlbumView.swift */; };
 		087D87E12ADE59B900367925 /* NotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 087D87E02ADE59B900367925 /* NotificationView.swift */; };
 		087D87ED2ADF2EE400367925 /* CalendarHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 087D87EC2ADF2EE400367925 /* CalendarHelper.swift */; };
-		327C98C22AE2691D0030CDBE /* ClockKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 327C98C02AE2690B0030CDBE /* ClockKit.framework */; };
-		327C98C32AE2691D0030CDBE /* ClockKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 327C98C02AE2690B0030CDBE /* ClockKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		327C98C52AE269210030CDBE /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 327C98BE2AE268F30030CDBE /* CoreData.framework */; };
-		327C98C62AE269210030CDBE /* CoreData.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 327C98BE2AE268F30030CDBE /* CoreData.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		327C98C92AE26DA20030CDBE /* CringeTrack.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 327C98C72AE26DA20030CDBE /* CringeTrack.xcdatamodeld */; };
 		3287E4EE2AE4EB870010C1C8 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3287E4ED2AE4EB870010C1C8 /* Persistence.swift */; };
 		3287E4F02AE4F46F0010C1C8 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3287E4EF2AE4F46F0010C1C8 /* CoreDataManager.swift */; };
@@ -59,8 +55,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				327C98C32AE2691D0030CDBE /* ClockKit.framework in Embed Frameworks */,
-				327C98C62AE269210030CDBE /* CoreData.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -88,8 +82,6 @@
 		087D87E02ADE59B900367925 /* NotificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationView.swift; sourceTree = "<group>"; };
 		087D87EC2ADF2EE400367925 /* CalendarHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarHelper.swift; sourceTree = "<group>"; };
 		327C98BC2AE21FC80030CDBE /* CringeTrack.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CringeTrack.entitlements; sourceTree = "<group>"; };
-		327C98BE2AE268F30030CDBE /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
-		327C98C02AE2690B0030CDBE /* ClockKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ClockKit.framework; path = System/Library/Frameworks/ClockKit.framework; sourceTree = SDKROOT; };
 		327C98C82AE26DA20030CDBE /* ClingeTrack.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ClingeTrack.xcdatamodel; sourceTree = "<group>"; };
 		3287E4ED2AE4EB870010C1C8 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
 		3287E4EF2AE4F46F0010C1C8 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
@@ -104,8 +96,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				327C98C22AE2691D0030CDBE /* ClockKit.framework in Frameworks */,
-				327C98C52AE269210030CDBE /* CoreData.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -227,8 +217,6 @@
 		327C98BD2AE268F30030CDBE /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				327C98C02AE2690B0030CDBE /* ClockKit.framework */,
-				327C98BE2AE268F30030CDBE /* CoreData.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
