@@ -29,6 +29,15 @@ final class CringeTrackTests: XCTestCase {
     func testCoreData() {
         
     }
+    
+    func testTotalDaysMet() throws {
+        let vm = CoupleDiaryMain()
+        let dateComp = DateComponents(calendar: Calendar.current, year: 2023, month: 10, day: 17)
+        
+        vm.dateMet = dateComp.date!
+        print(vm.totalDaysMet)
+        XCTAssertEqual(vm.totalDaysMet, 7)
+    }
 
     func testPerformanceExample() throws {
         // This is an example of a performance test case.

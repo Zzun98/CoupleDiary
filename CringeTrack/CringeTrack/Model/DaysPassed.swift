@@ -8,3 +8,7 @@
 // Code file for the list view of how many days have passed for the couple
 
 import Foundation
+
+class DaysPassed: ObservableObject {
+    
+}
