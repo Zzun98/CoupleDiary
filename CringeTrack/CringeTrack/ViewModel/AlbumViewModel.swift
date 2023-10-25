@@ -16,7 +16,7 @@ class AlbumViewModel: ObservableObject {
     //@Published var album: Dictionary
     
     //this function will process uploading the image from the image picker to CoreData
-    func saveImage(coupleMemory: CoupleMemory, uploadedImage: UIImage) {
+    func saveImage(coupleMemory: CoupleMemoryStruct, uploadedImage: UIImage) {
         do {
            try CoreDataManager.saveMemory(coupleMemory: coupleMemory, coupleUiImage: uploadedImage)
         } catch {
