@@ -34,4 +34,33 @@ class CoreDataManager {
         }
         return coupleMemoryTemp
     }
+    
+    //this is a helper function that will store a partner onto CoreData including their birthdays.
+    static private func storePartner(name: String, dateOfBirth: Date) throws {
+        let newPartner = Partner(context: context)
+        newPartner.name = name
+        newPartner.dateOfBirth = dateOfBirth
+        
+        //saves it to the Core Data Persistance Context
+        try context.save()
+    }
+    
+    //this is a function that will store two partners onto CoreData, also known as a couple.
+    static func storePartnerPair(firstPartnersName p1Name: String, firstPartnersDateOfBirth p1Dob: Date, secondPartnersName p2Name: String, secondPartnersDob p2Dob: Date) throws {
+        //for the first partner, lets say its a man
+        try storePartner(name: p1Name, dateOfBirth: p1Dob)
+        //for the second partner, lets say its a woman
+        try storePartner(name: p2Name, dateOfBirth: p2Dob)
+    }
+    
+    //the fetch partners will not be listed here as it is responsible for the front end using @FetchRequest.
+    
+    //this is a function that will store when did they meet.
+    static func storeDateMet(dateMet: Date) throws {
+        let newDateMet = Onboarding(context: context)
+        newDateMet.dateMet = dateMet
+        
+        //saves it to the context
+        try context.save()
+    }
 }

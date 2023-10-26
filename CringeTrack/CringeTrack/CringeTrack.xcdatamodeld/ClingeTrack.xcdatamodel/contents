@@ -8,6 +8,7 @@
     </entity>
     <entity name="Onboarding" representedClassName="Onboarding" syncable="YES" codeGenerationType="class">
         <attribute name="dateMet" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="homeImageData" optional="YES" attributeType="Binary"/>
     </entity>
     <entity name="Partner" representedClassName="Partner" syncable="YES" codeGenerationType="class">
         <attribute name="dateOfBirth" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
