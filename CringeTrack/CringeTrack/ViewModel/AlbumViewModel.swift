@@ -11,16 +11,20 @@ import SwiftUI
 import PhotosUI
 
 class AlbumViewModel: ObservableObject {
-    
+    @Published var coupleMemories = [CoupleMemoryStruct]()
     
     //@Published var album: Dictionary
     
     //this function will process uploading the image from the image picker to CoreData
-    func saveImage(coupleMemory: CoupleMemoryStruct, uploadedImage: UIImage) {
+    func saveImage(coupleMemory: CoupleMemoryStruct) {
         do {
-           try CoreDataManager.saveMemory(coupleMemory: coupleMemory, coupleUiImage: uploadedImage)
+           try CoreDataManager.saveMemory(coupleMemory: coupleMemory)
         } catch {
             print("Unable to save image.")
         }
+    }
+    
+    func loadAlbumItems() {
+        
     }
 }
