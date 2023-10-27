@@ -63,4 +63,21 @@ class CoreDataManager {
         //saves it to the context
         try context.save()
     }
+    
+    //this function will be called from the reset setting
+    //it will clear all CringTrack data in an event of a relationship breakup.
+    static func clearEverything() throws {
+        //deals with the fetch requests for all entities allocated.
+        let onboardingFr: NSFetchRequest<NSFetchRequestResult> = Onboarding.fetchRequest()
+        let memoryFr: NSFetchRequest<NSFetchRequestResult> = Memory.fetchRequest()
+        let partnersFr: NSFetchRequest<NSFetchRequestResult> = Partner.fetchRequest()
+        //puts it on the delte request batch
+        let onboardingDeleteRq = NSBatchDeleteRequest(fetchRequest: onboardingFr)
+        let memoryDeleteRq = NSBatchDeleteRequest(fetchRequest: memoryFr)
+        let partnersDeleteRq = NSBatchDeleteRequest(fetchRequest: partnersFr)
+        //processes the delete operation
+        try context.execute(onboardingDeleteRq)
+        try context.execute(memoryDeleteRq)
+        try context.execute(partnersDeleteRq)
+    }
 }
