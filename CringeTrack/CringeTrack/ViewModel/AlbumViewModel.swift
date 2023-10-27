@@ -11,16 +11,23 @@ import SwiftUI
 import PhotosUI
 
 class AlbumViewModel: ObservableObject {
-    
-    
-    //@Published var album: Dictionary
+    @Published var albumnData = [CoupleMemoryStruct]()
     
     //this function will process uploading the image from the image picker to CoreData
-    func saveImage(coupleMemory: CoupleMemory, uploadedImage: UIImage) {
+    func saveImage(coupleMemory: CoupleMemoryStruct) {
         do {
-           try CoreDataManager.saveMemory(coupleMemory: coupleMemory, coupleUiImage: uploadedImage)
+           try CoreDataManager.saveMemory(coupleMemory: coupleMemory)
         } catch {
             print("Unable to save image.")
         }
+    }
+    //this function will fetch it from core data and store it in memory, this will not decode an image as it is done from the frontend.
+    func loadAlbumItems() {
+        do {
+            self.albumnData = try CoreDataManager.loadAlbumns()
+        } catch {
+            print("Failed to load albumns.")
+        }
+        
     }
 }

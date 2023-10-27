@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="22222" systemVersion="23A344" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithCloudKit="YES" usedWithSwiftData="YES" userDefinedModelVersionIdentifier="">
-    <entity name="Memory" representedClassName="Memory" syncable="YES" codeGenerationType="class">
+    <entity name="Memory" representedClassName="Memory" syncable="YES">
         <attribute name="imageData" optional="YES" attributeType="Binary"/>
         <attribute name="imageName" optional="YES" attributeType="String"/>
         <attribute name="memoryDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
@@ -8,6 +8,7 @@
     </entity>
     <entity name="Onboarding" representedClassName="Onboarding" syncable="YES" codeGenerationType="class">
         <attribute name="dateMet" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="homeImageData" optional="YES" attributeType="Binary"/>
     </entity>
     <entity name="Partner" representedClassName="Partner" syncable="YES" codeGenerationType="class">
         <attribute name="dateOfBirth" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
