@@ -14,19 +14,29 @@ struct SettingsView: View {
         NavigationView {
             List {
                 settingRow(imageName: "Gift", text: "Birthdays")
+                    .overlay {
+                        NavigationLink(destination: BirthdayView()) {}
+                            .opacity(0)
+                    }
+                    .listRowBackground(Spacer().background(.white))
                 
-                NavigationLink(destination: NotificationView()) {
-                    settingRow(imageName: "Notification", text: "Notifications")
-                }.buttonStyle(.plain)
+                settingRow(imageName: "Notification", text: "Notifications")
+                    .overlay {
+                        NavigationLink(destination: NotificationView()) {}
+                            .opacity(0)
+                    }
+                    .listRowBackground(Spacer().background(.white))
                 
                 settingRow(imageName: "Cross", text: "Reset")
                     .onTapGesture {
                         showAlert = true
                     }
                 
+                // Need to set up code for Share feature popup
                 settingRow(imageName: "Share", text: "Share")
             }
             .listStyle(.plain)
+            .environment(\.defaultMinListRowHeight, 60)
             .navigationTitle("Settings")
             .alert(isPresented: $showAlert) {
                 Alert(title: Text("Reset all data?"),
