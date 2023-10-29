@@ -27,7 +27,7 @@ class CoreDataManager {
     static func loadAlbumns() throws -> [CoupleMemoryStruct] {
         let fetchRequest: NSFetchRequest<Memory> = Memory.fetchRequest()
         var coupleMemoryTemp = [CoupleMemoryStruct]()
-        for item in try fetchRequest.execute() {
+        for item in try context.fetch(fetchRequest) {
             let coupleMemory = CoupleMemoryStruct(imageData: item.imageData, description: item.memoryDescription ?? "", memoryDate: item.memoryDate ?? Date())
             //adds it onto the array
             coupleMemoryTemp.append(coupleMemory)
