@@ -7,14 +7,38 @@
 
 import SwiftUI
 
+// for the array of days the couple met
+struct DateItem {
+    let title: String
+    var date: String
+}
+
 struct HomeView: View {
     
-    //fetch today's date
+    // fetch today's date
     let currentDate: String = {
             let formatter = DateFormatter()
             formatter.dateFormat = "dd.MM.yyyy"
             return formatter.string(from: Date())
         }()
+    
+    // date can be filled later with what the user sets
+    let dateItems: [DateItem] = [
+            DateItem(title: "Day we met", date: ""),
+            DateItem(title: "100 days", date: ""),
+            DateItem(title: "200 days", date: ""),
+            DateItem(title: "300 days", date: ""),
+            DateItem(title: "1 year", date: ""),
+            DateItem(title: "2 years", date: ""),
+            DateItem(title: "3 years", date: ""),
+            DateItem(title: "4 years", date: ""),
+            DateItem(title: "5 years", date: ""),
+            DateItem(title: "6 years", date: ""),
+            DateItem(title: "7 years", date: ""),
+            DateItem(title: "8 years", date: ""),
+            DateItem(title: "9 years", date: ""),
+            DateItem(title: "10 years", date: "")
+        ]
     
     var body: some View {
         VStack {
@@ -50,28 +74,18 @@ struct HomeView: View {
             }
             
             // ListView for number of days the couple met - need to connect with Model & ViewModel
-            List {
+            List(dateItems, id: \.title) { item in
                 HStack {
-                    Text("Day we met")
+                    Text(item.title)
                         .font(.system(size: 24, weight: .bold))
                     Spacer()
-                    // Modify this code so that the corresponding dates would be shown instead
-                    Text("filler")
-                        .font(.system(size: 16, weight: .medium))
-                }
-                .listRowSeparatorTint(.black)
-                
-                HStack {
-                    Text("100 days")
-                        .font(.system(size: 24, weight: .bold))
-                    Spacer()
-                    // Modify this code so that the corresponding dates would be shown instead
-                    Text("filler")
+                    Text(item.date)
                         .font(.system(size: 16, weight: .medium))
                 }
                 .listRowSeparatorTint(.black)
             }
             .listStyle(.plain)
+            .environment(\.defaultMinListRowHeight, 60)
         }
     }
 }

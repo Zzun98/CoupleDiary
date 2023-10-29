@@ -31,7 +31,6 @@ struct DayWeMetView: View {
     }
 }
 
-
 #Preview {
     DayWeMetView()
 }
