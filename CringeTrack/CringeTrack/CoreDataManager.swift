@@ -19,6 +19,7 @@ class CoreDataManager {
     //this will store a memory onto the CoreData after the user adds a photo and description
     static func saveMemory(coupleMemory: CoupleMemoryStruct) throws {
         let newMemory = Memory(context: context)
+        newMemory.id = coupleMemory.id
         newMemory.imageData = coupleMemory.imageData
         newMemory.memoryDate = coupleMemory.memoryDate
         newMemory.memoryDescription = coupleMemory.description
@@ -27,12 +28,30 @@ class CoreDataManager {
         try context.save()
     }
     
+    //this will be used to about a couple memory item which is the albumn image with the description.
+    //the dates will not be updated as it is fixed on that particular view.
+    static func updateMemory(id: UUID, imageData: Data?, description: String?) throws {
+        let fetchRequest: NSFetchRequest<Memory> = Memory.fetchRequest()
+        let specificMemoryPred: NSPredicate = NSPredicate(format: "id == %@", id.uuidString)
+        fetchRequest.predicate = specificMemoryPred
+        let memoryItem = try context.fetch(fetchRequest).first
+        //this will only update the image data if the user intentially changes it.
+        if let imageData = imageData {
+            memoryItem?.imageData = imageData
+        }
+        if let description = description {
+            memoryItem?.memoryDescription = description
+        }
+        //saves it to the context
+        try context.save()
+    }
+    
     //this will only load data from CoreData and will not automatically convert it to an image as it is done from the frontend.
     static func loadAlbumns() throws -> [CoupleMemoryStruct] {
         let fetchRequest: NSFetchRequest<Memory> = Memory.fetchRequest()
         var coupleMemoryTemp = [CoupleMemoryStruct]()
         for item in try context.fetch(fetchRequest) {
-            let coupleMemory = CoupleMemoryStruct(imageData: item.imageData, description: item.memoryDescription ?? "", memoryDate: item.memoryDate ?? Date())
+            let coupleMemory = CoupleMemoryStruct(id: item.id, imageData: item.imageData, description: item.memoryDescription ?? "", memoryDate: item.memoryDate ?? Date())
             //adds it onto the array
             coupleMemoryTemp.append(coupleMemory)
         }

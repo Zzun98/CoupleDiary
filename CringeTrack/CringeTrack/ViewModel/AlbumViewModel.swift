@@ -23,12 +23,22 @@ class AlbumViewModel: ObservableObject {
     }
     //this is a variable that will have the image data from the photopickeritem.
     @Published var selectedImageBinary: Data?
+    @Published var showErrorAlert: Bool = false
+    @Published var alertTitle: String = ""
+    @Published var alertMessage: String = ""
+    
     //this function will process uploading the image from the image picker to CoreData
     func saveImage(coupleMemory: CoupleMemoryStruct) {
         do {
            try CoreDataManager.saveMemory(coupleMemory: coupleMemory)
         } catch {
+            showErrorAlert = true
+            alertTitle = "An error has occurred"
+            alertMessage = "We are unable to save your image onto the app."
             print("Unable to save image.")
+            //used for debugging.
+            print(error)
+            print(error.localizedDescription)
         }
     }
     //this function will fetch it from core data and store it in memory, this will not decode an image as it is done from the frontend.
@@ -42,6 +52,29 @@ class AlbumViewModel: ObservableObject {
             print(error.localizedDescription)
         }
         
+    }
+    
+    func updateImage(id: UUID) {
+        do {
+            //updates it on the Core Data persistance
+            try CoreDataManager.updateMemory(id: id, imageData: selectedImageBinary, description: nil)
+        } catch {
+            showErrorAlert = true
+            alertTitle = "An error has occurred"
+            alertMessage = "Unable to update the image."
+        }
+    }
+    //this is a seperate function to update the image description and store it in CoreData.
+    func updateImageDescription(id: UUID, imageDescription: String) {
+        do {
+            try CoreDataManager.updateMemory(id: id, imageData: nil, description: imageDescription)
+        } catch {
+            showErrorAlert = true
+            alertTitle = "An error has occurred."
+            alertMessage = "Unable to update image description."
+            print(error)
+            print(error.localizedDescription)
+        }
     }
     
     func setImageRawData(imageFromPhotoPicker: PhotosPickerItem) throws {

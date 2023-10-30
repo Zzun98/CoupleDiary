@@ -13,7 +13,7 @@ struct AlbumView: View {
     @StateObject var albumViewVM: AlbumViewModel = AlbumViewModel()
     let columns: [GridItem] = Array(repeating: .init(.flexible()), count: 1)
     @State var showImagePicker: Bool = false
-
+    @State var endDate: Date? //this is a variable that will display the images based until the end date when tapped from the home view.
     var body: some View {
         ScrollView {
             LazyVGrid(columns: columns, spacing: 40) {
@@ -43,6 +43,7 @@ struct ZStackContent: View {
     @State var description: String?
     @Binding var showImagePicker: Bool
     @Binding var selectedImage: PhotosPickerItem?
+    @State var coupleMemory: CoupleMemoryStruct? //this variable will be an optional one and used only if the details needs to be updated such as removing an image or changing it on the albumn.
     @ObservedObject var albumnViewVM: AlbumViewModel
     var body: some View {
         ZStack(alignment: .top) {
@@ -120,9 +121,15 @@ struct ZStackContent: View {
         }.sheet(isPresented: $showImagePicker, content: {
             PhotosPicker("Select an image", selection: $selectedImage)
         }).onChange(of: selectedImage) { oldValue, newValue in
-            //this will store the images to core data and reload it.
-            let coupleMemory = CoupleMemoryStruct(imageData: albumnViewVM.selectedImageBinary, description: "", memoryDate: Date())
-            albumnViewVM.saveImage(coupleMemory: coupleMemory)
+            //this will update the existing albumn item if the user wants to change an image.
+            if let existingAlbumnItem = coupleMemory {
+                albumnViewVM.updateImage(id: existingAlbumnItem.id)
+            } else {
+                //this will store the images to core data and reload it.
+                let coupleMemory = CoupleMemoryStruct(id: UUID(), imageData: albumnViewVM.selectedImageBinary, description: "", memoryDate: Date())
+                albumnViewVM.saveImage(coupleMemory: coupleMemory)
+            }
+           
             //reloads the view model
             albumnViewVM.loadAlbumItems()
         }
