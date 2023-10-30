@@ -73,7 +73,7 @@ struct ZStackContent: View {
                     Image(uiImage: haveUiImage)
                         .resizable()
                         .aspectRatio(contentMode: .fill)
-                        .frame(width: 250, height: 250)
+                        .frame(width: 150, height: 150)
                         .padding(.top, 110)
                         .clipped()
                 } else {
@@ -90,7 +90,11 @@ struct ZStackContent: View {
             // The text here should change depending on the user's input
             // Up to 200 characters per photo
             HStack {
-                Text("(Write a short description)")
+                Button {
+                    
+                } label: {
+                    Text("(Write a short description)")                
+                }
                     .font(.system(size: 20, weight: .semibold))
                     //.frame(width: UIScreen.main.bounds.width * 0.7, alignment: .topLeading)
                     .padding(.top, 260)
