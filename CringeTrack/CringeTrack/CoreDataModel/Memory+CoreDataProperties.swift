@@ -15,7 +15,8 @@ extension Memory {
     @nonobjc public class func fetchRequest() -> NSFetchRequest<Memory> {
         return NSFetchRequest<Memory>(entityName: "Memory")
     }
-
+    
+    @NSManaged public var id: UUID
     @NSManaged public var imageData: Data?
     @NSManaged public var imageName: String?
     @NSManaged public var memoryDate: Date?
