@@ -15,7 +15,7 @@ struct AlbumView: View {
     @State var showImagePicker: Bool = false
     @State var endDate: Date? //this is a variable that will display the images based until the end date when tapped from the home view.
     @State var imageData: Data?
-    
+    @State var onChangeCounter: Int = 0
     var body: some View {
         ScrollView {
             LazyVGrid(columns: columns, spacing: 40) {
@@ -23,12 +23,12 @@ struct AlbumView: View {
                 ForEach($albumViewVM.albumnData) { $item in
                     if let imageData = item.imageData {
                         if let isImage = UIImage(data: imageData) {
-                            ZStackContent(albumnImage: isImage, showImagePicker: $showImagePicker, selectedImage: $albumViewVM.selectedImage, albumnViewVM: albumViewVM)
+                            ZStackContent(albumnImage: isImage, showImagePicker: $showImagePicker, selectedImage: albumViewVM.selectedImage, onChangeCounter: $onChangeCounter, albumnViewVM: albumViewVM)
                         }
                     }
                 }
                 //this is an empty albumn image placeholder that will be used to add a new image.
-                ZStackContent(showImagePicker: $showImagePicker, selectedImage: $albumViewVM.selectedImage, albumnViewVM: albumViewVM)
+                ZStackContent(showImagePicker: $showImagePicker, onChangeCounter: $onChangeCounter, albumnViewVM: albumViewVM)
             }
             .padding()
         }.onAppear {
@@ -42,10 +42,11 @@ struct ZStackContent: View {
     @State var albumnImage: UIImage?
     @State var description: String?
     @Binding var showImagePicker: Bool
-    @Binding var selectedImage: PhotosPickerItem?
+    @State var selectedImage: PhotosPickerItem?
+    @Binding var onChangeCounter: Int
     @State var coupleMemory: CoupleMemoryStruct? //this variable will be an optional one and used only if the details needs to be updated such as removing an image or changing it on the albumn.
     @ObservedObject var albumnViewVM: AlbumViewModel
-    @State var onChangeCounter: Int = 0
+    
     var body: some View {
         ZStack(alignment: .top) {
             Rectangle()
@@ -85,42 +86,6 @@ struct ZStackContent: View {
                         .clipped()
                 }
                 
-            }.onChange(of: selectedImage) { oldImage, newImage in
-                //if (newImage != nil) || (oldImage == nil && newImage != nil) {
-                
-                if newImage != oldImage {
-                    onChangeCounter = 0
-                }
-                
-                if onChangeCounter == 0 {
-                    if let newImage = newImage {
-                        Task {
-                            if let newImageData = try! await albumnViewVM.convertToBinaryData(imageFromPhotoPicker: newImage) {
-                                print("Image selection triggered.")
-                                //this will update the existing albumn item if the user wants to change an image.
-                                if let existingAlbumnItem = coupleMemory {
-                                    albumnViewVM.updateImage(id: existingAlbumnItem.id)
-                                } else {
-                                    //this will store the images to core data and reload it.
-                                    let coupleMemory = CoupleMemoryStruct(id: UUID(), imageData: newImageData, description: "(Write a description)", memoryDate: Date())
-                                    albumnViewVM.saveImage(coupleMemory: coupleMemory)
-                                    //reloads the view model
-                                    albumnViewVM.loadAlbumItems()
-                                    onChangeCounter += 1
-                                    return
-                                }
-                            }
-                           
-                           
-                        }
-                        
-                        
-                    
-                }
-                
-                }
-                    
-                
             }
             
             // The text here should change depending on the user's input
@@ -153,6 +118,37 @@ struct ZStackContent: View {
                 .font(.system(size: 20, weight: .semibold))
                 .frame(width: UIScreen.main.bounds.width * 0.7, alignment: .topLeading)
                 .padding(.top, 260)
+        }
+        .onChange(of: selectedImage) { oldImage, newImage in
+            //if (newImage != nil) || (oldImage == nil && newImage != nil) {
+            
+            if newImage != oldImage {
+                onChangeCounter = 0
+            }
+            
+            if onChangeCounter == 0 {
+                if let newImage = newImage {
+                    Task {
+                        
+                        if let newImageData = try! await albumnViewVM.convertToBinaryData(imageFromPhotoPicker: newImage) {
+                            print("Image selection triggered.")
+                            //this will update the existing albumn item if the user wants to change an image.
+                            if let existingAlbumnItem = coupleMemory {
+                                albumnViewVM.updateImage(id: existingAlbumnItem.id)
+                            } else {
+                                onChangeCounter += 1
+                                //this will store the images to core data and reload it.
+                                let coupleMemory = CoupleMemoryStruct(id: UUID(), imageData: newImageData, description: "(Write a description)", memoryDate: Date())
+                                albumnViewVM.saveImage(coupleMemory: coupleMemory)
+                                //reloads the view model
+                                albumnViewVM.loadAlbumItems()
+                              
+                            }
+                        }
+                    }
+                }
+            
+            }
         }
     }
 }
