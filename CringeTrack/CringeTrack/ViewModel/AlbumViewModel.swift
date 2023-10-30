@@ -12,7 +12,7 @@ import PhotosUI
 
 class AlbumViewModel: ObservableObject {
     @Published var albumnData = [CoupleMemoryStruct]()
-    @Published var selectedImage: PhotosPickerItem? = nil {
+    @Published var selectedImage: PhotosPickerItem? = nil /* {
         didSet {
             do {
                 try setImageRawData(imageFromPhotoPicker: selectedImage!)
@@ -20,7 +20,7 @@ class AlbumViewModel: ObservableObject {
                 print("Failed converting to raw data.")
             }
         }
-    }
+    }*/
     //this is a variable that will have the image data from the photopickeritem.
     @Published var selectedImageBinary: Data?
     @Published var showErrorAlert: Bool = false
@@ -83,5 +83,16 @@ class AlbumViewModel: ObservableObject {
                 self.selectedImageBinary = data
             }
         }
+    }
+    
+    func convertToBinaryData(imageFromPhotoPicker: PhotosPickerItem) async throws -> Data? {
+        
+        //var convertedToData: Data?
+        if let data = try await imageFromPhotoPicker.loadTransferable(type: Data.self) {
+            return data
+        } else {
+            return nil
+        }
+        
     }
 }
