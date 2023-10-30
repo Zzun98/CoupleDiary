@@ -26,6 +26,7 @@
 		087D87DF2ADDAC2100367925 /* AlbumView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 087D87DE2ADDAC2100367925 /* AlbumView.swift */; };
 		087D87E12ADE59B900367925 /* NotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 087D87E02ADE59B900367925 /* NotificationView.swift */; };
 		087D87ED2ADF2EE400367925 /* CalendarHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 087D87EC2ADF2EE400367925 /* CalendarHelper.swift */; };
+		3241CB3E2AEF6965005235F9 /* CoupleDiaryMain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3241CB3D2AEF6965005235F9 /* CoupleDiaryMain.swift */; };
 		327C98C92AE26DA20030CDBE /* CringeTrack.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 327C98C72AE26DA20030CDBE /* CringeTrack.xcdatamodeld */; };
 		328692262AE7D48500E2122F /* AlbumViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 328692252AE7D48500E2122F /* AlbumViewModel.swift */; };
 		3287E4EE2AE4EB870010C1C8 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3287E4ED2AE4EB870010C1C8 /* Persistence.swift */; };
@@ -34,7 +35,6 @@
 		328F9A6C2AEE6AB90050A0CB /* Memory+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 328F9A6A2AEE6AB90050A0CB /* Memory+CoreDataProperties.swift */; };
 		32DED41F2ADF69B6009981B2 /* CoupleImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32DED41D2ADF69B6009981B2 /* CoupleImage.swift */; };
 		32DED4202ADF69B6009981B2 /* CoupleMemoryStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32DED41E2ADF69B6009981B2 /* CoupleMemoryStruct.swift */; };
-		32DED4222ADF6A4E009981B2 /* CoupleDiaryMain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32DED4212ADF6A4E009981B2 /* CoupleDiaryMain.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -90,6 +90,7 @@
 		087D87DE2ADDAC2100367925 /* AlbumView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumView.swift; sourceTree = "<group>"; };
 		087D87E02ADE59B900367925 /* NotificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationView.swift; sourceTree = "<group>"; };
 		087D87EC2ADF2EE400367925 /* CalendarHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarHelper.swift; sourceTree = "<group>"; };
+		3241CB3D2AEF6965005235F9 /* CoupleDiaryMain.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoupleDiaryMain.swift; sourceTree = "<group>"; };
 		327C98BC2AE21FC80030CDBE /* CringeTrack.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CringeTrack.entitlements; sourceTree = "<group>"; };
 		327C98C82AE26DA20030CDBE /* ClingeTrack.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ClingeTrack.xcdatamodel; sourceTree = "<group>"; };
 		328692252AE7D48500E2122F /* AlbumViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumViewModel.swift; sourceTree = "<group>"; };
@@ -100,7 +101,6 @@
 		328F9A6A2AEE6AB90050A0CB /* Memory+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Memory+CoreDataProperties.swift"; path = "CringeTrack/CoreDataModel/Memory+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		32DED41D2ADF69B6009981B2 /* CoupleImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoupleImage.swift; sourceTree = "<group>"; };
 		32DED41E2ADF69B6009981B2 /* CoupleMemoryStruct.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoupleMemoryStruct.swift; sourceTree = "<group>"; };
-		32DED4212ADF6A4E009981B2 /* CoupleDiaryMain.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CoupleDiaryMain.swift; path = ../../../../../Downloads/CoupleDiaryMain.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -214,7 +214,7 @@
 		083E9E012ADC679600E7444A /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				32DED4212ADF6A4E009981B2 /* CoupleDiaryMain.swift */,
+				3241CB3D2AEF6965005235F9 /* CoupleDiaryMain.swift */,
 				087D87EC2ADF2EE400367925 /* CalendarHelper.swift */,
 				328692252AE7D48500E2122F /* AlbumViewModel.swift */,
 			);
@@ -382,7 +382,6 @@
 				083E9E0C2ADCDE4C00E7444A /* SettingsView.swift in Sources */,
 				3287E4EE2AE4EB870010C1C8 /* Persistence.swift in Sources */,
 				083E9E062ADC9F2600E7444A /* DayWeMetView.swift in Sources */,
-				32DED4222ADF6A4E009981B2 /* CoupleDiaryMain.swift in Sources */,
 				3287E4F02AE4F46F0010C1C8 /* CoreDataManager.swift in Sources */,
 				083E9DD92ADB8BFA00E7444A /* ContentView.swift in Sources */,
 				084F0E7B2AEE656D0008E625 /* BirthdayView.swift in Sources */,
@@ -391,6 +390,7 @@
 				083E9E082ADCDE0B00E7444A /* HomeView.swift in Sources */,
 				083E9E102ADD1CD100E7444A /* DaysPassed.swift in Sources */,
 				087D87ED2ADF2EE400367925 /* CalendarHelper.swift in Sources */,
+				3241CB3E2AEF6965005235F9 /* CoupleDiaryMain.swift in Sources */,
 				083E9DD72ADB8BFA00E7444A /* CringeTrackApp.swift in Sources */,
 				087D87E12ADE59B900367925 /* NotificationView.swift in Sources */,
 				32DED4202ADF69B6009981B2 /* CoupleMemoryStruct.swift in Sources */,
@@ -400,8 +400,6 @@
 				084F0E7F2AEE65940008E625 /* MonthStruct.swift in Sources */,
 				328F9A6C2AEE6AB90050A0CB /* Memory+CoreDataProperties.swift in Sources */,
 				087D87DF2ADDAC2100367925 /* AlbumView.swift in Sources */,
-				083E9DD72ADB8BFA00E7444A /* CringeTrackApp.swift in Sources */,
-				087D87E12ADE59B900367925 /* NotificationView.swift in Sources */,
 				084F0E7D2AEE658C0008E625 /* CheckboxStyle.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
