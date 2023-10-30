@@ -9,7 +9,7 @@ import SwiftUI
 import UserNotifications
 
 struct DayWeMetView: View {
-    @State private var selectedDate = Date()
+    @EnvironmentObject var coupleDiaryMain: CoupleDiaryMain
     let currentDate = Date()
 
     var body: some View {
@@ -21,13 +21,17 @@ struct DayWeMetView: View {
             // Need to change code so that the text "Pick a date..." itself becomes the datepicker
             DatePicker(
                 "Pick a date...",
-                selection: $selectedDate,
+                selection: $coupleDiaryMain.dateMet,
                 in: ...currentDate,
                 displayedComponents: .date
             )
                 .font(.system(size: 32, weight: .bold))
                 .foregroundColor(Color(red: 0.56, green: 0.56, blue: 0.56))
                 .labelsHidden()
+            Button("Continue") {
+                //processes the onboarding
+                coupleDiaryMain.processOnboarding()
+            }
         }
     }
 }

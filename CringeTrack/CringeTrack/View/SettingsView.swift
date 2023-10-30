@@ -10,6 +10,7 @@ import SwiftUI
 struct SettingsView: View {
     @State private var showAlert = false
     @State private var showErrorAlert = false
+    @EnvironmentObject var coupleDiaryMain: CoupleDiaryMain
     var body: some View {
         NavigationView {
             List {
@@ -38,22 +39,23 @@ struct SettingsView: View {
             .listStyle(.plain)
             .environment(\.defaultMinListRowHeight, 60)
             .navigationTitle("Settings")
-            .alert(isPresented: $showAlert) {
-                Alert(title: Text("Reset all data?"),
-                      message: Text("This cannot be undone."),
-                      primaryButton: .destructive(Text("Reset"), action: {
-                    do {
-                        //clears all CringeTrack data from the database including images, partner birthdays and days met.
-                        try CoreDataManager.clearEverything()
-                    } catch {
-                        showErrorAlert = true
-                    }
-                    
-                }),
-                      secondaryButton: .cancel())
-            }.alert(isPresented: $showErrorAlert, content: {
+            .alert(isPresented: $showErrorAlert, content: {
                 Alert(title: Text("Unable to reset CringeTrack"))
             })
+        }.alert(isPresented: $showAlert) {
+            Alert(title: Text("Reset all data?"),
+                  message: Text("This cannot be undone."),
+                  primaryButton: .destructive(Text("Reset"), action: {
+                do {
+                    //clears all CringeTrack data from the database including images, partner birthdays and days met.
+                    try CoreDataManager.clearEverything()
+                    //puts the view back to onboarding logo view
+                    coupleDiaryMain.isSetup = false
+                } catch {
+                    showErrorAlert = true
+                }
+            }),
+              secondaryButton: .cancel())
         }
     }
     

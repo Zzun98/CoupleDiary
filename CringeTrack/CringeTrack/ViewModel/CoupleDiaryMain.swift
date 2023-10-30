@@ -21,6 +21,9 @@ enum ImageState {
 
 //this is the main view model that will store all stuffs for couple dairy including photos.
 class CoupleDiaryMain: ObservableObject {
+    @Published var showErrorAlert: Bool = false
+    @Published var alertTitle: String = ""
+    @Published var alertMessage: String = ""
     @Published var isSetup: Bool = false //this is a boolean that will determine if the user is already used the app before or using it for the first time.
     @Published var currentImageState: ImageState = .empty
     @Published var dateMet: Date = Date()
@@ -67,7 +70,9 @@ class CoupleDiaryMain: ObservableObject {
         do {
             try CoreDataManager.storeDateMet(dateMet: dateMet)
             //this will create blank instance of partners, the partners name can be set later.
-            try CoreDataManager.storePartnerPair(firstPartnersName: "Partner1", firstPartnersDateOfBirth: Date(), secondPartnersName: "Partner2", secondPartnersDob: Date())
+            try CoreDataManager.storePartnerPair(firstPartnersName: "My Name", firstPartnersDateOfBirth: Date(), secondPartnersName: "Their Name", secondPartnersDob: Date())
+            //changes it to in session tab view.
+            self.isSetup = true
         } catch {
             print("Unable to process onboarding \(error.localizedDescription)")
             print(error)
@@ -101,6 +106,19 @@ class CoupleDiaryMain: ObservableObject {
             }
         } catch {
             print("Error fetching data.")
+        }
+    }
+    
+    //this is a function that will update the partner's details
+    func updatePartner(partnerNewName: String, partnerBirthday: Date, isPrimaryPartner: Bool) {
+        do {
+            try CoreDataManager.updatePartner(name: partnerNewName, birthday: partnerBirthday, isPrimaryPartner: isPrimaryPartner)
+        } catch {
+            showErrorAlert = true
+            alertTitle = "An Error has occurred!"
+            alertMessage = "Unable to update name or birthday."
+            print(error)
+            print(error.localizedDescription)
         }
     }
     

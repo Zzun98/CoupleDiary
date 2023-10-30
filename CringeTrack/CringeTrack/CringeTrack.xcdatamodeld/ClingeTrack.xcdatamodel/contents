@@ -13,6 +13,7 @@
     <entity name="Partner" representedClassName="Partner" syncable="YES" codeGenerationType="class">
         <attribute name="dateOfBirth" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="name" optional="YES" attributeType="String"/>
+        <attribute name="primaryPartner" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
     </entity>
     <configuration name="Cloud" usedWithCloudKit="YES">
         <memberEntity name="Memory"/>

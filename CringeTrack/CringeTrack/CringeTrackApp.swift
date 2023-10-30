@@ -10,8 +10,9 @@ import CoreData
 
 @main struct CringeTrackApp: App {
     let persistenceController = PersistenceController.shared
+    @StateObject var coupleDiaryMain = CoupleDiaryMain()
     var body: some Scene {
-        @StateObject var coupleDiaryMain = CoupleDiaryMain()
+        
         WindowGroup {
             ContentView()
                 .environment(\.managedObjectContext, persistenceController.container.viewContext).environmentObject(coupleDiaryMain)

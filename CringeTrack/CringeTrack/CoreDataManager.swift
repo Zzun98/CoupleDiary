@@ -9,6 +9,10 @@ import Foundation
 import SwiftUI
 import CoreData
 
+enum QueryError: Error {
+    case noRecords(message: String)
+}
+
 class CoreDataManager {
     static let context = PersistenceController.shared.container.viewContext
     
@@ -36,10 +40,12 @@ class CoreDataManager {
     }
     
     //this is a helper function that will store a partner onto CoreData including their birthdays.
-    static private func storePartner(name: String, dateOfBirth: Date) throws {
+    static private func storePartner(name: String, dateOfBirth: Date, isPrimaryPartner: Bool) throws {
         let newPartner = Partner(context: context)
         newPartner.name = name
         newPartner.dateOfBirth = dateOfBirth
+        //this is used to reflect the front end structure so it can be sorted based on primary partner status.
+        newPartner.primaryPartner = isPrimaryPartner
         
         //saves it to the Core Data Persistance Context
         try context.save()
@@ -48,9 +54,9 @@ class CoreDataManager {
     //this is a function that will store two partners onto CoreData, also known as a couple.
     static func storePartnerPair(firstPartnersName p1Name: String, firstPartnersDateOfBirth p1Dob: Date, secondPartnersName p2Name: String, secondPartnersDob p2Dob: Date) throws {
         //for the first partner, lets say its a man
-        try storePartner(name: p1Name, dateOfBirth: p1Dob)
+        try storePartner(name: p1Name, dateOfBirth: p1Dob, isPrimaryPartner: true)
         //for the second partner, lets say its a woman
-        try storePartner(name: p2Name, dateOfBirth: p2Dob)
+        try storePartner(name: p2Name, dateOfBirth: p2Dob, isPrimaryPartner: false)
     }
     
     //the fetch partners will not be listed here as it is responsible for the front end using @FetchRequest.
@@ -62,6 +68,24 @@ class CoreDataManager {
         
         //saves it to the context
         try context.save()
+    }
+    
+    //this is a function to update partner's details including their name and birtday
+    static func updatePartner(name: String, birthday: Date, isPrimaryPartner: Bool) throws {
+        let fetchRequest: NSFetchRequest<Partner> = Partner.fetchRequest()
+        let partnerPred: NSPredicate = NSPredicate(format: "primaryPartner == %@", NSNumber(value: isPrimaryPartner))
+        //allocates the predicate to the fetchRequest
+        fetchRequest.predicate = partnerPred
+        let results = try context.fetch(fetchRequest)
+        guard let partnerResult = results.first else {
+            throw QueryError.noRecords(message: "The selected partner was not found.")
+        }
+        //updates the partner details
+        partnerResult.name = name
+        partnerResult.dateOfBirth = birthday
+        //saves it to the context
+        try context.save()
+        
     }
     
     //this will fetch the onboarding data including days met
@@ -96,4 +120,6 @@ class CoreDataManager {
         try context.execute(memoryDeleteRq)
         try context.execute(partnersDeleteRq)
     }
+    
+    
 }
