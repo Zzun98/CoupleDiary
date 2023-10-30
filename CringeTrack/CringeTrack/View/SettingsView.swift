@@ -9,7 +9,7 @@ import SwiftUI
 
 struct SettingsView: View {
     @State private var showAlert = false
-
+    @State private var showErrorAlert = false
     var body: some View {
         NavigationView {
             List {
@@ -41,9 +41,19 @@ struct SettingsView: View {
             .alert(isPresented: $showAlert) {
                 Alert(title: Text("Reset all data?"),
                       message: Text("This cannot be undone."),
-                      primaryButton: .destructive(Text("Reset")),
+                      primaryButton: .destructive(Text("Reset"), action: {
+                    do {
+                        //clears all CringeTrack data from the database including images, partner birthdays and days met.
+                        try CoreDataManager.clearEverything()
+                    } catch {
+                        showErrorAlert = true
+                    }
+                    
+                }),
                       secondaryButton: .cancel())
-            }
+            }.alert(isPresented: $showErrorAlert, content: {
+                Alert(title: Text("Unable to reset CringeTrack"))
+            })
         }
     }
     

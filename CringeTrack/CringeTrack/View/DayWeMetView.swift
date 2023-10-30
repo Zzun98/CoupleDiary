@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import UserNotifications
 
 struct DayWeMetView: View {
     @State private var selectedDate = Date()

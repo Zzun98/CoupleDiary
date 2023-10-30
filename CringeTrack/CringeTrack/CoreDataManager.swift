@@ -64,6 +64,22 @@ class CoreDataManager {
         try context.save()
     }
     
+    //this will fetch the onboarding data including days met
+    static func fetchFirstMet() throws -> Date? {
+        let fetchRequest: NSFetchRequest<Onboarding> = Onboarding.fetchRequest()
+        let fetchResuls = try context.fetch(fetchRequest)
+        //this will return the date object if there are data stored.
+        //for th;e purpose of this app, since its already synced to cloudKit, each account will have one data stores.
+        //in this case, it will only get the first index of date met.
+        if let dateMet = fetchResuls.first?.dateMet {
+            return dateMet
+        } else {
+            //this will return nil if there are no records in the results.
+            return nil
+        }
+        
+    }
+    
     //this function will be called from the reset setting
     //it will clear all CringTrack data in an event of a relationship breakup.
     static func clearEverything() throws {

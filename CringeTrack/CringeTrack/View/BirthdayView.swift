@@ -8,6 +8,11 @@
 import SwiftUI
 
 struct BirthdayView: View {
+    @Environment(\.managedObjectContext) var context
+    @FetchRequest(
+        sortDescriptors: [NSSortDescriptor(keyPath: \Partner.name, ascending: true)],
+        animation: .default)
+    private var items: FetchedResults<Partner>
     @State private var birthdayOn = false
     @State private var selectedDate = Date()
     @State private var myName = false

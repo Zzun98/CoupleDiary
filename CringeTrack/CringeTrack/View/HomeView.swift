@@ -14,7 +14,9 @@ struct DateItem {
 }
 
 struct HomeView: View {
-    
+    @Environment(\.managedObjectContext) var contet
+    @EnvironmentObject var coupleDiaryMain: CoupleDiaryMain
+    //@FetchRequest(entity: Onboarding, sortDescriptors: Onboarding.dateMet)
     // fetch today's date
     let currentDate: String = {
             let formatter = DateFormatter()
@@ -60,7 +62,7 @@ struct HomeView: View {
                     
                     HStack {
                         // Need to modify this code so that the number would change depending on the days passed since the first day the couple met
-                        Text("1")
+                        Text("\(coupleDiaryMain.totalDaysMet)")
                             .font(.system(size: 96, weight: .bold))
                             .foregroundColor(.white)
                         
@@ -86,7 +88,10 @@ struct HomeView: View {
             }
             .listStyle(.plain)
             .environment(\.defaultMinListRowHeight, 60)
-        }
+        }.onAppear(perform: {
+            //loads onboarding data that is stored in CoreData
+            coupleDiaryMain.loadOnboarding()
+        })
     }
 }
 
