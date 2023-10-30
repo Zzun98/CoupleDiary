@@ -8,28 +8,21 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State private var selection = 0
     
+    @EnvironmentObject var coupleDiaryMain: CoupleDiaryMain
     var body: some View {
-        TabView {
-            CalendarView()
-                .tabItem {
-                    Image(systemName: "calendar")
-                    Text("Calendar")
-                }
-            
-            HomeView()
-                .tabItem {
-                    Image(systemName: "house")
-                    Text("Home")
-                }
-            
-            SettingsView()
-                .tabItem {
-                    Image(systemName: "gearshape")
-                    Text("Settings")
-                }
-        }
+       //this will display the logo view if the app does not have data stored.
+        Group {
+            if coupleDiaryMain.isSetup {
+                InSessionView()
+            } else {
+                LogoView()
+            }
+        }.onAppear(perform: {
+            //determines if onboarding data is already stored on the device
+            coupleDiaryMain.isConfigured()
+        })
+        
     }
 }
 

@@ -36,10 +36,12 @@ class CoreDataManager {
     }
     
     //this is a helper function that will store a partner onto CoreData including their birthdays.
-    static private func storePartner(name: String, dateOfBirth: Date) throws {
+    static private func storePartner(name: String, dateOfBirth: Date, isPrimaryPartner: Bool) throws {
         let newPartner = Partner(context: context)
         newPartner.name = name
         newPartner.dateOfBirth = dateOfBirth
+        //this is used to reflect the front end structure so it can be sorted based on primary partner status.
+        newPartner.primaryPartner = isPrimaryPartner
         
         //saves it to the Core Data Persistance Context
         try context.save()
@@ -48,9 +50,9 @@ class CoreDataManager {
     //this is a function that will store two partners onto CoreData, also known as a couple.
     static func storePartnerPair(firstPartnersName p1Name: String, firstPartnersDateOfBirth p1Dob: Date, secondPartnersName p2Name: String, secondPartnersDob p2Dob: Date) throws {
         //for the first partner, lets say its a man
-        try storePartner(name: p1Name, dateOfBirth: p1Dob)
+        try storePartner(name: p1Name, dateOfBirth: p1Dob, isPrimaryPartner: true)
         //for the second partner, lets say its a woman
-        try storePartner(name: p2Name, dateOfBirth: p2Dob)
+        try storePartner(name: p2Name, dateOfBirth: p2Dob, isPrimaryPartner: false)
     }
     
     //the fetch partners will not be listed here as it is responsible for the front end using @FetchRequest.

@@ -67,7 +67,9 @@ class CoupleDiaryMain: ObservableObject {
         do {
             try CoreDataManager.storeDateMet(dateMet: dateMet)
             //this will create blank instance of partners, the partners name can be set later.
-            try CoreDataManager.storePartnerPair(firstPartnersName: "Partner1", firstPartnersDateOfBirth: Date(), secondPartnersName: "Partner2", secondPartnersDob: Date())
+            try CoreDataManager.storePartnerPair(firstPartnersName: "My Name", firstPartnersDateOfBirth: Date(), secondPartnersName: "Their Name", secondPartnersDob: Date())
+            //changes it to in session tab view.
+            self.isSetup = true
         } catch {
             print("Unable to process onboarding \(error.localizedDescription)")
             print(error)
@@ -103,5 +105,7 @@ class CoupleDiaryMain: ObservableObject {
             print("Error fetching data.")
         }
     }
+    
+    
     
 }

@@ -10,9 +10,9 @@ import SwiftUI
 struct BirthdayView: View {
     @Environment(\.managedObjectContext) var context
     @FetchRequest(
-        sortDescriptors: [NSSortDescriptor(keyPath: \Partner.name, ascending: true)],
+        sortDescriptors: [NSSortDescriptor(keyPath: \Partner.primaryPartner, ascending: false)],
         animation: .default)
-    private var items: FetchedResults<Partner>
+    private var partners: FetchedResults<Partner>
     @State private var birthdayOn = false
     @State private var selectedDate = Date()
     @State private var myName = false
@@ -30,6 +30,12 @@ struct BirthdayView: View {
             }
             .padding(.bottom, 40)
             
+            ForEach(partners) { partner in
+                PartnerRow(partnerName: partner.name ?? "", partnerDob: partner.dateOfBirth ?? Date(), isPrimaryPartner: partner.primaryPartner)
+                
+            }
+            
+            /*
             // Edit 'my' name
             HStack {
                 Text("My Name")
@@ -102,7 +108,7 @@ struct BirthdayView: View {
                 .padding(.bottom, 50)
                 
                 Spacer()
-            }
+            }*/
             
             // Show birthdays at home
             HStack {
