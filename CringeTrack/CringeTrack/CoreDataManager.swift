@@ -9,6 +9,10 @@ import Foundation
 import SwiftUI
 import CoreData
 
+enum QueryError: Error {
+    case noRecords(message: String)
+}
+
 class CoreDataManager {
     static let context = PersistenceController.shared.container.viewContext
     
@@ -66,6 +70,24 @@ class CoreDataManager {
         try context.save()
     }
     
+    //this is a function to update partner's details including their name and birtday
+    static func updatePartner(name: String, birthday: Date, isPrimaryPartner: Bool) throws {
+        let fetchRequest: NSFetchRequest<Partner> = Partner.fetchRequest()
+        let partnerPred: NSPredicate = NSPredicate(format: "primaryPartner == %@", NSNumber(value: isPrimaryPartner))
+        //allocates the predicate to the fetchRequest
+        fetchRequest.predicate = partnerPred
+        let results = try context.fetch(fetchRequest)
+        guard let partnerResult = results.first else {
+            throw QueryError.noRecords(message: "The selected partner was not found.")
+        }
+        //updates the partner details
+        partnerResult.name = name
+        partnerResult.dateOfBirth = birthday
+        //saves it to the context
+        try context.save()
+        
+    }
+    
     //this will fetch the onboarding data including days met
     static func fetchFirstMet() throws -> Date? {
         let fetchRequest: NSFetchRequest<Onboarding> = Onboarding.fetchRequest()
@@ -98,4 +120,6 @@ class CoreDataManager {
         try context.execute(memoryDeleteRq)
         try context.execute(partnersDeleteRq)
     }
+    
+    
 }

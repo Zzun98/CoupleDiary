@@ -36,9 +36,23 @@ struct PartnerRow: View {
                 .padding(.bottom, 10)
                 .alert(isPrimaryPartner ? "Write your name" : "Write their name", isPresented: $showEditAlert) {
                      TextField("", text: $partnerNewName)
-                     Button("Cancel", action: {})
-                     Button("Confirm", action: {})
+                     Button("Cancel", action: {
+                         showEditAlert = false
+                     })
+                     Button("Confirm", action: {
+                         //updates the partner's name on the view side
+                         partnerName = partnerNewName
+                         //updates it on the backend.
+                         coupleDiaryMain.updatePartner(partnerNewName: partnerNewName, partnerBirthday: partnerDob, isPrimaryPartner: isPrimaryPartner)
+                     })
                 }
+                .alert(isPresented: $coupleDiaryMain.showErrorAlert, content: {
+                    Alert(
+                        title: Text("\(coupleDiaryMain.alertTitle)"),
+                        message: Text("\(coupleDiaryMain.alertMessage)")
+                    )
+                    
+                })
               
             }
 
@@ -53,6 +67,9 @@ struct PartnerRow: View {
                 .padding(.bottom, 50)
                 
                 Spacer()
+            }.onChange(of: partnerDob) { oldValue, newValue in
+                //updates the partner details when the birth of date is chaged.
+                coupleDiaryMain.updatePartner(partnerNewName: partnerName, partnerBirthday: partnerDob, isPrimaryPartner: isPrimaryPartner)
             }
             
         }
