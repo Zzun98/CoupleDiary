@@ -89,6 +89,7 @@ struct HomeView: View {
             .listStyle(.plain)
             .environment(\.defaultMinListRowHeight, 60)
         }.onAppear(perform: {
+            //loads onboarding data that is stored in CoreData
             coupleDiaryMain.loadOnboarding()
         })
     }
