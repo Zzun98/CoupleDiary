@@ -10,7 +10,13 @@ import SwiftUI
 // for the array of days the couple met
 struct DateItem {
     let title: String
-    var date: String
+    var date: Date
+    //this is a string computed property that will return a date in a date format for the user to view.
+    var formattedDate: String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "dd.MM.yyyy"
+        return formatter.string(from: date)
+    }
 }
 
 struct HomeView: View {
@@ -25,32 +31,35 @@ struct HomeView: View {
         }()
     
     // date can be filled later with what the user sets
-    let dateItems: [DateItem] = [
-            DateItem(title: "Day we met", date: ""),
-            DateItem(title: "100 days", date: ""),
-            DateItem(title: "200 days", date: ""),
-            DateItem(title: "300 days", date: ""),
-            DateItem(title: "1 year", date: ""),
-            DateItem(title: "2 years", date: ""),
-            DateItem(title: "3 years", date: ""),
-            DateItem(title: "4 years", date: ""),
-            DateItem(title: "5 years", date: ""),
-            DateItem(title: "6 years", date: ""),
-            DateItem(title: "7 years", date: ""),
-            DateItem(title: "8 years", date: ""),
-            DateItem(title: "9 years", date: ""),
-            DateItem(title: "10 years", date: "")
+    var dateItems: [DateItem] {
+        let dateItemArray: [DateItem] = [
+            DateItem(title: "Day we met", date: coupleDiaryMain.dateMet),
+            DateItem(title: "100 days", date: self.getDateFromDaysOnly(days: 100) ),
+            DateItem(title: "200 days", date: self.getDateFromDaysOnly(days: 200)),
+            DateItem(title: "300 days", date: self.getDateFromDaysOnly(days: 300)),
+            DateItem(title: "1 year", date: self.getDateFromFirstMetToCurrent(days: nil, month: nil, year: 1)),
+            DateItem(title: "2 years", date: self.getDateFromFirstMetToCurrent(days: nil, month: nil, year: 2)),
+            DateItem(title: "3 years", date: self.getDateFromFirstMetToCurrent(days: nil, month: nil, year: 3)),
+            DateItem(title: "4 years", date: self.getDateFromFirstMetToCurrent(days: nil, month: nil, year: 4)),
+            DateItem(title: "5 years",date: self.getDateFromFirstMetToCurrent(days: nil, month: nil, year: 5)),
+            DateItem(title: "6 years", date: self.getDateFromFirstMetToCurrent(days: nil, month: nil, year: 6)),
+            DateItem(title: "7 years", date: self.getDateFromFirstMetToCurrent(days: nil, month: nil, year: 7)),
+            DateItem(title: "8 years", date: self.getDateFromFirstMetToCurrent(days: nil, month: nil, year: 8)),
+            DateItem(title: "9 years", date: self.getDateFromFirstMetToCurrent(days: nil, month: nil, year: 9)),
+            DateItem(title: "10 years", date: self.getDateFromFirstMetToCurrent(days: nil, month: nil, year: 10))
         ]
+        return dateItemArray
+    }
     
     var body: some View {
         VStack {
             ZStack {
                 // The rectangle is a placeholder for now - needs to be replaced with an image later
                 Rectangle()
-                    //.resizable()
-                    //.aspectRatio(contentMode: .fill)
+                //.resizable()
+                //.aspectRatio(contentMode: .fill)
                     .frame(width: UIScreen.main.bounds.width, height: 220)
-                    //delete this line of code later when we find an okay image
+                //delete this line of code later when we find an okay image
                     .foregroundColor(.white)
                     .overlay(Color.black.opacity(0.4))
                     .clipped()
@@ -81,7 +90,7 @@ struct HomeView: View {
                     Text(item.title)
                         .font(.system(size: 24, weight: .bold))
                     Spacer()
-                    Text(item.date)
+                    Text(item.formattedDate)
                         .font(.system(size: 16, weight: .medium))
                 }
                 .listRowSeparatorTint(.black)
@@ -92,6 +101,22 @@ struct HomeView: View {
             //loads onboarding data that is stored in CoreData
             coupleDiaryMain.loadOnboarding()
         })
+   
+    }
+    
+    
+    //this is a function that will return the date from the original date to the numbers of days specified for date item.
+    func getDateFromFirstMetToCurrent(days: Int?, month: Int?, year: Int?) -> Date {
+        let calendar = Calendar.current
+        let addedDates =  calendar.date(byAdding: DateComponents(year: year, month: month, day: days), to: coupleDiaryMain.dateMet)
+        return addedDates!
+        
+    }
+    
+    func getDateFromDaysOnly(days: Int) -> Date {
+        let calendar = Calendar.current
+        let newDate = calendar.date(byAdding: .day, value: days, to: coupleDiaryMain.dateMet)
+        return newDate!
     }
 }
 
