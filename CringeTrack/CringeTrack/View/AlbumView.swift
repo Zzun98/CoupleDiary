@@ -75,45 +75,53 @@ struct ZStackContent: View {
             // Add action to add photo here
             // After uploading photo, add code to change description of each photo
             if let coupleMemory = coupleMemory {
-                Menu {
-                    PhotosPicker("Change Photo", selection: $selectedImage)
-                    Button("Delete Photo") {
+                VStack {
+                    PhotosPicker("Replace", selection: $selectedImage)
+                        .font(.system(size: 20, weight: .semibold))
+                        .frame(width: 160, height: 40)
+                        .background(Color.white)
+                        .foregroundColor(.black)
+                        .cornerRadius(20)
+                    
+                    Button(action: {
                         Task {
                             albumnViewVM.deleteAlbumItem(id: coupleMemory.id)
-                            //reloads the data model
+                //reloads the data model
                             albumnViewVM.loadAlbumItems(date: date)
                         }
-                        
-                        
+                    }) {
+                Text("Delete")
+                    .font(.system(size: 20, weight: .semibold))
+                    .frame(width: 160, height: 40)
+                    .background(Color.white)
+                            .foregroundColor(.black)
+                            .cornerRadius(20)
                     }
-                        
-                    
-                } label: {
-                    if let haveUiImage = albumnImage {
-                        Image(uiImage: haveUiImage)
-                            .resizable()
-                            .aspectRatio(contentMode: .fill)
-                            .frame(width: 150, height: 150)
-                            .padding(.top, 110)
-                            .clipped()
-                    } else {
-                        Image("AddPhoto")
-                            .resizable()
-                            .aspectRatio(contentMode: .fill)
-                            .frame(width: 50, height: 50)
-                            .padding(.top, 110)
-                            .clipped()
-                    }
+                }
+                if let haveUiImage = albumnImage {
+                    Image(uiImage: haveUiImage)
+                        .resizable()
+                        .aspectRatio(contentMode: .fill)
+                        .frame(width: 150, height: 150)
+                        .padding(.top, 110)
+                        .clipped()
+                } else {
+                    Image("AddPhoto")
+                    .resizable()
+                    .aspectRatio(contentMode: .fill)
+                    .frame(width: 50, height: 50)
+                    .padding(.top, 110)
+                        .clipped()
                 }
             } else {
                 PhotosPicker(selection: $selectedImage, matching: .images) {
                     Image("AddPhoto")
-                        .resizable()
-                        .aspectRatio(contentMode: .fill)
-                        .frame(width: 50, height: 50)
-                        .padding(.top, 110)
-                        .clipped()
-                }
+                    .resizable()
+                    .aspectRatio(contentMode: .fill)
+                    .frame(width: 50, height: 50)
+                    .padding(.top, 110)
+                    .clipped()
+            }
             }
             
             
