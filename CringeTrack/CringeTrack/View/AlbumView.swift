@@ -25,17 +25,17 @@ struct AlbumView: View {
                 ForEach($albumViewVM.albumnData) { $item in
                     if let imageData = item.imageData {
                         if let isImage = UIImage(data: imageData) {
-                            ZStackContent(albumnImage: isImage, showImagePicker: $showImagePicker, selectedImage: albumViewVM.selectedImage, onChangeCounter: $onChangeCounter, coupleMemory: item, albumnViewVM: albumViewVM)
+                            ZStackContent(albumnImage: isImage, showImagePicker: $showImagePicker, selectedImage: albumViewVM.selectedImage, onChangeCounter: $onChangeCounter, coupleMemory: item, albumnViewVM: albumViewVM, date: $endDate)
                         }
                     }
                 }
                 //this is an empty albumn image placeholder that will be used to add a new image.
-                ZStackContent(showImagePicker: $showImagePicker, onChangeCounter: $onChangeCounter, albumnViewVM: albumViewVM)
+                ZStackContent(showImagePicker: $showImagePicker, onChangeCounter: $onChangeCounter, albumnViewVM: albumViewVM, date: $endDate)
             }
             .padding()
         }.onAppear {
             //loads it from CoreData to the VM
-            albumViewVM.loadAlbumItems()
+            albumViewVM.loadAlbumItems(date: endDate)
         }.navigationTitle(daysString).navigationBarTitleDisplayMode(.inline)
     }
 }
@@ -49,7 +49,7 @@ struct ZStackContent: View {
     @State var coupleMemory: CoupleMemoryStruct? //this variable will be an optional one and used only if the details needs to be updated such as removing an image or changing it on the albumn.
     @ObservedObject var albumnViewVM: AlbumViewModel
     @State var showMenu: Bool = false
-    
+    @Binding var date: Date
     var body: some View {
         ZStack(alignment: .top) {
             Rectangle()
@@ -78,7 +78,7 @@ struct ZStackContent: View {
                         Task {
                             albumnViewVM.deleteAlbumItem(id: coupleMemory.id)
                             //reloads the data model
-                            albumnViewVM.loadAlbumItems()
+                            albumnViewVM.loadAlbumItems(date: date)
                         }
                         
                         
@@ -147,13 +147,6 @@ struct ZStackContent: View {
                 .padding(.top, 260)
         }
         .onChange(of: selectedImage) { oldImage, newImage in
-            //if (newImage != nil) || (oldImage == nil && newImage != nil) {
-            
-            if newImage != oldImage {
-                onChangeCounter = 0
-            }
-            
-            if onChangeCounter == 0 {
                 if let newImage = newImage {
                     Task {
                         
@@ -165,17 +158,17 @@ struct ZStackContent: View {
                             } else {
                                 onChangeCounter += 1
                                 //this will store the images to core data and reload it.
-                                let coupleMemory = CoupleMemoryStruct(id: UUID(), imageData: newImageData, description: "(Write a description)", memoryDate: Date())
+                                let coupleMemory = CoupleMemoryStruct(id: UUID(), imageData: newImageData, description: "(Write a description)", memoryDate: date)
                                 albumnViewVM.saveImage(coupleMemory: coupleMemory)
                                 //reloads the view model
-                                albumnViewVM.loadAlbumItems()
+                                albumnViewVM.loadAlbumItems(date: date)
                               
                             }
                         }
                     }
                 }
             
-            }
+            
         }.actionSheet(isPresented: $showMenu, content: {
             ActionSheet(title: Text("Album Item"), buttons: [
                 

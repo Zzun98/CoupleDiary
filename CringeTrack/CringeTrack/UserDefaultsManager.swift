@@ -24,4 +24,8 @@ class UserDefaultsManager {
         }
         
     }
+    //resets the birthday state by removing it from user defaults.
+    static func clearBirthdayState() {
+        standard.removeObject(forKey: birthdayKey)
+    }
 }

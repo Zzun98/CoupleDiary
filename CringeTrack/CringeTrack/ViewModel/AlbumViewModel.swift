@@ -43,9 +43,9 @@ class AlbumViewModel: ObservableObject {
     }
     //this function will fetch it from core data and store it in memory, this will not decode an image as it is done from the frontend.
     @MainActor
-    func loadAlbumItems() {
+    func loadAlbumItems(date: Date) {
         do {
-            self.albumnData = try CoreDataManager.loadAlbumns()
+            self.albumnData = try CoreDataManager.loadAlbumns(date: date)
             print("Loaded albumn data.")
             print("There are \(self.albumnData.count) memories")
         } catch {

@@ -51,6 +51,8 @@ struct SettingsView: View {
                     try CoreDataManager.clearEverything()
                     //puts the view back to onboarding logo view
                     coupleDiaryMain.isSetup = false
+                    //clears settings from user defaults
+                    UserDefaultsManager.clearBirthdayState()
                 } catch {
                     showErrorAlert = true
                 }
