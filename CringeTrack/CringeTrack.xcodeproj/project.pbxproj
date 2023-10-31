@@ -36,6 +36,7 @@
 		3287E4F02AE4F46F0010C1C8 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3287E4EF2AE4F46F0010C1C8 /* CoreDataManager.swift */; };
 		328F9A6B2AEE6AB90050A0CB /* Memory+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 328F9A692AEE6AB90050A0CB /* Memory+CoreDataClass.swift */; };
 		328F9A6C2AEE6AB90050A0CB /* Memory+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 328F9A6A2AEE6AB90050A0CB /* Memory+CoreDataProperties.swift */; };
+		329F01F52AF1A6A00073BFC3 /* PromiseKit in Frameworks */ = {isa = PBXBuildFile; productRef = 329F01F42AF1A6A00073BFC3 /* PromiseKit */; };
 		32DED41F2ADF69B6009981B2 /* CoupleImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32DED41D2ADF69B6009981B2 /* CoupleImage.swift */; };
 		32DED4202ADF69B6009981B2 /* CoupleMemoryStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32DED41E2ADF69B6009981B2 /* CoupleMemoryStruct.swift */; };
 /* End PBXBuildFile section */
@@ -114,6 +115,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				329F01F52AF1A6A00073BFC3 /* PromiseKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -273,6 +275,9 @@
 			dependencies = (
 			);
 			name = CringeTrack;
+			packageProductDependencies = (
+				329F01F42AF1A6A00073BFC3 /* PromiseKit */,
+			);
 			productName = CringeTrack;
 			productReference = 083E9DD32ADB8BF900E7444A /* CringeTrack.app */;
 			productType = "com.apple.product-type.application";
@@ -345,6 +350,9 @@
 				Base,
 			);
 			mainGroup = 083E9DCA2ADB8BF900E7444A;
+			packageReferences = (
+				329F01F32AF1A6A00073BFC3 /* XCRemoteSwiftPackageReference "PromiseKit" */,
+			);
 			productRefGroup = 083E9DD42ADB8BF900E7444A /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -752,6 +760,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		329F01F32AF1A6A00073BFC3 /* XCRemoteSwiftPackageReference "PromiseKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/mxcl/PromiseKit";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 8.1.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		329F01F42AF1A6A00073BFC3 /* PromiseKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 329F01F32AF1A6A00073BFC3 /* XCRemoteSwiftPackageReference "PromiseKit" */;
+			productName = PromiseKit;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		327C98C72AE26DA20030CDBE /* CringeTrack.xcdatamodeld */ = {

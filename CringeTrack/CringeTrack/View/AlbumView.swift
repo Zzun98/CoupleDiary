@@ -22,11 +22,11 @@ struct AlbumView: View {
         ScrollView {
             LazyVGrid(columns: columns, spacing: 40) {
 
-                ForEach($albumViewVM.albumnData) { $item in
+                ForEach(albumViewVM.albumnData) { item in
                     if let imageData = item.imageData {
-                        if let isImage = UIImage(data: imageData) {
-                            ZStackContent(albumnImage: isImage, description: item.description, showImagePicker: $showImagePicker, selectedImage: albumViewVM.selectedImage, onChangeCounter: $onChangeCounter, coupleMemory: item, albumnViewVM: albumViewVM, date: $endDate, showEditAlert: $showEditAlert, itemId: item.id)
-                        }
+                        
+                            ZStackContent(albumnImageData: imageData, description: item.description, showImagePicker: $showImagePicker, selectedImage: albumViewVM.selectedImage, onChangeCounter: $onChangeCounter, coupleMemory: item, albumnViewVM: albumViewVM, date: $endDate, showEditAlert: $showEditAlert, itemId: item.id)
+                        
                     }
                 }
                 //this is an empty albumn image placeholder that will be used to add a new image.
@@ -41,7 +41,7 @@ struct AlbumView: View {
 }
 
 struct ZStackContent: View {
-    @State var albumnImage: UIImage?
+    @State var albumnImageData: Data?
     @State var description: String?
     @Binding var showImagePicker: Bool
     @State var selectedImage: PhotosPickerItem?
@@ -54,48 +54,63 @@ struct ZStackContent: View {
     @Binding var date: Date
     @Binding var showEditAlert: Bool
     @State var itemId: UUID?
+    
     var body: some View {
-        ZStack(alignment: .top) {
-            Rectangle()
-                .fill(Color.white)
-                .frame(width: 320, height: 360)
-                .shadow(color: .black.opacity(0.25), radius: 2, x: 0, y: 4)
-                .cornerRadius(16)
-                .overlay(
-                    RoundedRectangle(cornerRadius: 16)
-                        .stroke(Color.black, lineWidth: 2)
-                )
-            
-            Rectangle()
-                .foregroundColor(.clear)
-                .frame(width: 280, height: 220)
-                .background(Color(red: 0.96, green: 0.49, blue: 0.43))
-                .cornerRadius(10)
-                .padding(.top, 24)
-            
-            // Add action to add photo here
-            // After uploading photo, add code to change description of each photo
-            if let coupleMemory = coupleMemory {
-                Menu {
-                    PhotosPicker("Change Photo", selection: $selectedImage)
-                    Button("Delete Photo") {
-                        Task {
-                            albumnViewVM.deleteAlbumItem(id: coupleMemory.id)
-                            //reloads the data model
-                            albumnViewVM.loadAlbumItems(date: date)
+        Group {
+            ZStack(alignment: .top) {
+                Rectangle()
+                    .fill(Color.white)
+                    .frame(width: 320, height: 360)
+                    .shadow(color: .black.opacity(0.25), radius: 2, x: 0, y: 4)
+                    .cornerRadius(16)
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 16)
+                            .stroke(Color.black, lineWidth: 2)
+                    )
+                
+                Rectangle()
+                    .foregroundColor(.clear)
+                    .frame(width: 280, height: 220)
+                    .background(Color(red: 0.96, green: 0.49, blue: 0.43))
+                    .cornerRadius(10)
+                    .padding(.top, 24)
+                
+                // Add action to add photo here
+                // After uploading photo, add code to change description of each photo
+                if let coupleMemory = coupleMemory {
+                    Menu {
+                        PhotosPicker("Change Photo", selection: $selectedImage)
+                        Button("Delete Photo") {
+                            Task {
+                                albumnViewVM.deleteAlbumItem(id: coupleMemory.id)
+                                //reloads the data model
+                                albumnViewVM.loadAlbumItems(date: date)
+                            }
+                        }
+                            
+                        
+                    } label: {
+                        if let haveImageData = albumnImageData {
+                            if let haveImage = UIImage(data: haveImageData) {
+                                Image(uiImage: haveImage)
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fill)
+                                    .frame(width: 150, height: 150)
+                                    .padding(.top, 110)
+                                    .clipped()
+                            }
+                           
+                        } else {
+                            Image("AddPhoto")
+                                .resizable()
+                                .aspectRatio(contentMode: .fill)
+                                .frame(width: 50, height: 50)
+                                .padding(.top, 110)
+                                .clipped()
                         }
                     }
-                        
-                    
-                } label: {
-                    if let haveUiImage = albumnImage {
-                        Image(uiImage: haveUiImage)
-                            .resizable()
-                            .aspectRatio(contentMode: .fill)
-                            .frame(width: 150, height: 150)
-                            .padding(.top, 110)
-                            .clipped()
-                    } else {
+                } else {
+                    PhotosPicker(selection: $selectedImage, matching: .images) {
                         Image("AddPhoto")
                             .resizable()
                             .aspectRatio(contentMode: .fill)
@@ -104,74 +119,73 @@ struct ZStackContent: View {
                             .clipped()
                     }
                 }
-            } else {
-                PhotosPicker(selection: $selectedImage, matching: .images) {
-                    Image("AddPhoto")
-                        .resizable()
-                        .aspectRatio(contentMode: .fill)
-                        .frame(width: 50, height: 50)
-                        .padding(.top, 110)
-                        .clipped()
-                }
-            }
-            
-            
-            
-            // The text here should change depending on the user's input
-            // Up to 200 characters per photo
-            HStack {
-                Button {
-                    
-                } label: {
-                    Text(description ?? "(Write a short description)")
-                }
-                .font(.system(size: 20, weight: .semibold))
-                //.frame(width: UIScreen.main.bounds.width * 0.7, alignment: .topLeading)
-                .padding(.top, 260)
                 
-                // Pencil-shaped Button that allows users to change the description
-                Button(action: {
-                    showEditAlert = true
-                }) {
-                    Image("Pencil")
-                        .resizable()
-                        .aspectRatio(contentMode: .fill)
-                        .frame(width: 24, height: 24)
-                        .padding(.top, 260)
-                        .clipped()
-                }
-            }
-            
-            
-           // Text(description ?? "(Write a short description)")
-                //.font(.system(size: 20, weight: .semibold))
-                //.frame(width: UIScreen.main.bounds.width * 0.7, alignment: .topLeading)
-                //.padding(.top, 260)
-        }
-        .onChange(of: selectedImage) { oldImage, newImage in
-            if let newImage = newImage {
-                Task {
-                    if let newImageData = try! await albumnViewVM.convertToBinaryData(imageFromPhotoPicker: newImage) {
-                        print("Image selection triggered.")
-                        //this will update the existing albumn item if the user wants to change an image.
-                        if let existingAlbumnItem = coupleMemory {
-                            albumnViewVM.updateImage(id: existingAlbumnItem.id)
-                        } else {
-                            onChangeCounter += 1
-                            //this will store the images to core data and reload it.
-                            let coupleMemory = CoupleMemoryStruct(id: UUID(), imageData: newImageData, description: "(Write a description)", memoryDate: date)
-                            albumnViewVM.saveImage(coupleMemory: coupleMemory)
-                            //reloads the view model
-                            albumnViewVM.loadAlbumItems(date: date)
-                            
-                        }
+                
+                
+                // The text here should change depending on the user's input
+                // Up to 200 characters per photo
+                HStack {
+                    Button {
+                        
+                    } label: {
+                        Text(description ?? "(Write a short description)")
+                    }
+                    .font(.system(size: 20, weight: .semibold))
+                    //.frame(width: UIScreen.main.bounds.width * 0.7, alignment: .topLeading)
+                    .padding(.top, 260)
+                    
+                    // Pencil-shaped Button that allows users to change the description
+                    Button(action: {
+                        self.showEditAlert = true
+                    }) {
+                        Image("Pencil")
+                            .resizable()
+                            .aspectRatio(contentMode: .fill)
+                            .frame(width: 24, height: 24)
+                            .padding(.top, 260)
+                            .clipped()
                     }
                 }
-           }
+                
+                
+               // Text(description ?? "(Write a short description)")
+                    //.font(.system(size: 20, weight: .semibold))
+                    //.frame(width: UIScreen.main.bounds.width * 0.7, alignment: .topLeading)
+                    //.padding(.top, 260)
+            }
+            .onChange(of: selectedImage) { oldImage, newImage in
+                if let newImage = newImage {
+                    Task {
+                        if let newImageData = try! await albumnViewVM.convertToBinaryData(imageFromPhotoPicker: newImage) {
+                            print("Image selection triggered.")
+                            //this will update the existing albumn item if the user wants to change an image.
+                            if let existingAlbumnItem = coupleMemory {
+                                albumnViewVM.updateImage(id: existingAlbumnItem.id)
+                            } else {
+                                onChangeCounter += 1
+                                //this will store the images to core data and reload it.
+                                let coupleMemory = CoupleMemoryStruct(id: UUID(), imageData: newImageData, description: "(Write a description)", memoryDate: date)
+                                albumnViewVM.saveImage(coupleMemory: coupleMemory)
+                                //reloads the view model
+                                albumnViewVM.loadAlbumItems(date: date)
+                                
+                            }
+                        }
+                    }
+               }
+                
             
-        
-         
-        
+             
+            
+
+                    
+
+            }.alert(isPresented: $albumnViewVM.showErrorAlert) {
+                Alert(
+                    title: Text(albumnViewVM.alertTitle),
+                    message: Text(albumnViewVM.alertMessage)
+                )
+            }
         }.alert("Write your description", isPresented: $showEditAlert) {
             TextField("", text: $newDescription)
             Button("Cancel", action: {
@@ -186,7 +200,7 @@ struct ZStackContent: View {
                             //updates it on the backend.
                             albumnViewVM.updateImageDescription(id: id, imageDescription: newDescription)
                         }
-                      
+                        
                     }
                 } else {
                     //displays an alert if charcater count exceeds 200.
@@ -195,13 +209,6 @@ struct ZStackContent: View {
                     albumnViewVM.alertMessage = "You can only write up to 200 characters for the description."
                 }
             })
-                
-
-        }.alert(isPresented: $albumnViewVM.showErrorAlert) {
-            Alert(
-                title: Text(albumnViewVM.alertTitle),
-                message: Text(albumnViewVM.alertMessage)
-            )
         }
     }
 }

@@ -8,6 +8,7 @@
 import Foundation
 import SwiftUI
 import CoreData
+import PromiseKit
 
 enum QueryError: Error {
     case noRecords(message: String)
@@ -47,17 +48,27 @@ class CoreDataManager {
     }
     
     //this will only load data from CoreData and will not automatically convert it to an image as it is done from the frontend.
-    static func loadAlbumns(date: Date) throws -> [CoupleMemoryStruct] {
-        let fetchRequest: NSFetchRequest<Memory> = Memory.fetchRequest()
-        let datePredicate: NSPredicate = NSPredicate(format: "memoryDate == %@", date as CVarArg)
-        fetchRequest.predicate = datePredicate
-        var coupleMemoryTemp = [CoupleMemoryStruct]()
-        for item in try context.fetch(fetchRequest) {
-            let coupleMemory = CoupleMemoryStruct(id: item.memoryId, imageData: item.imageData, description: item.memoryDescription ?? "", memoryDate: item.memoryDate ?? Date())
-            //adds it onto the array
-            coupleMemoryTemp.append(coupleMemory)
+    static func loadAlbumns(date: Date) -> Promise<[CoupleMemoryStruct]> {
+        return Promise {
+            seal in
+            do {
+                let fetchRequest: NSFetchRequest<Memory> = Memory.fetchRequest()
+                let datePredicate: NSPredicate = NSPredicate(format: "memoryDate == %@", date as CVarArg)
+                fetchRequest.predicate = datePredicate
+                var coupleMemoryTemp = [CoupleMemoryStruct]()
+                for item in try context.fetch(fetchRequest) {
+                    let coupleMemory = CoupleMemoryStruct(id: item.memoryId, imageData: item.imageData, description: item.memoryDescription ?? "", memoryDate: item.memoryDate ?? Date())
+                    //adds it onto the array
+                    coupleMemoryTemp.append(coupleMemory)
+                }
+                seal.fulfill(coupleMemoryTemp)
+            } catch {
+                seal.reject(error)
+            }
+           
+            
         }
-        return coupleMemoryTemp
+      
     }
     
     //this is a helper function that will store a partner onto CoreData including their birthdays.
