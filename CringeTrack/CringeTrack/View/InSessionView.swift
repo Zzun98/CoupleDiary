@@ -23,10 +23,6 @@ struct InSessionView: View {
                     Image(systemName: "house")
                     Text("Home")
                 }
-            AlbumView()
-                .tabItem{
-                Text("AlbumnTest")
-            }
             SettingsView()
                 .tabItem {
                     Image(systemName: "gearshape")

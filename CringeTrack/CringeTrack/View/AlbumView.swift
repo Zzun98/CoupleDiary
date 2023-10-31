@@ -13,7 +13,8 @@ struct AlbumView: View {
     @StateObject var albumViewVM: AlbumViewModel = AlbumViewModel()
     let columns: [GridItem] = Array(repeating: .init(.flexible()), count: 1)
     @State var showImagePicker: Bool = false
-    @State var endDate: Date? //this is a variable that will display the images based until the end date when tapped from the home view.
+    @State var daysString: String
+    @State var endDate: Date //this is a variable that will display the images based until the end date when tapped from the home view.
     @State var imageData: Data?
     @State var onChangeCounter: Int = 0
     
@@ -35,7 +36,7 @@ struct AlbumView: View {
         }.onAppear {
             //loads it from CoreData to the VM
             albumViewVM.loadAlbumItems()
-        }
+        }.navigationTitle(daysString).navigationBarTitleDisplayMode(.inline)
     }
 }
 
@@ -184,5 +185,5 @@ struct ZStackContent: View {
 }
 
 #Preview {
-    AlbumView()
+    AlbumView(daysString: "7 Days", endDate: Date())
 }

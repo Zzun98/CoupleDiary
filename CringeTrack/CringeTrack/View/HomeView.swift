@@ -17,18 +17,25 @@ struct DateItem {
         formatter.dateFormat = "dd.MM.yyyy"
         return formatter.string(from: date)
     }
+    
+    //this is a computed property to determine if the day has passed or not and returns in a boolean
+    var isDaysPassed: Bool {
+        return date <= Date()
+    }
 }
 
 struct HomeView: View {
     @Environment(\.managedObjectContext) var contet
     @EnvironmentObject var coupleDiaryMain: CoupleDiaryMain
-    //@FetchRequest(entity: Onboarding, sortDescriptors: Onboarding.dateMet)
+    
     // fetch today's date
     let currentDate: String = {
             let formatter = DateFormatter()
             formatter.dateFormat = "dd.MM.yyyy"
             return formatter.string(from: Date())
         }()
+    
+    
     
     // date can be filled later with what the user sets
     var dateItems: [DateItem] {
@@ -52,55 +59,63 @@ struct HomeView: View {
     }
     
     var body: some View {
-        VStack {
-            ZStack {
-                // The rectangle is a placeholder for now - needs to be replaced with an image later
-                Rectangle()
-                //.resizable()
-                //.aspectRatio(contentMode: .fill)
-                    .frame(width: UIScreen.main.bounds.width, height: 220)
-                //delete this line of code later when we find an okay image
-                    .foregroundColor(.white)
-                    .overlay(Color.black.opacity(0.4))
-                    .clipped()
-                
-                VStack {
-                    Text("Today: \(currentDate)")
-                        .font(.system(size: 16, weight: .bold))
+        NavigationView {
+            VStack {
+                ZStack {
+                    // The rectangle is a placeholder for now - needs to be replaced with an image later
+                    Rectangle()
+                    //.resizable()
+                    //.aspectRatio(contentMode: .fill)
+                        .frame(width: UIScreen.main.bounds.width, height: 220)
+                    //delete this line of code later when we find an okay image
                         .foregroundColor(.white)
+                        .overlay(Color.black.opacity(0.4))
+                        .clipped()
                     
-                    HStack {
-                        // Need to modify this code so that the number would change depending on the days passed since the first day the couple met
-                        Text("\(coupleDiaryMain.totalDaysMet)")
-                            .font(.system(size: 96, weight: .bold))
+                    VStack {
+                        Text("Today: \(currentDate)")
+                            .font(.system(size: 16, weight: .bold))
                             .foregroundColor(.white)
                         
-                        Text("days")
-                            .font(.system(size: 40, weight: .bold))
-                            .foregroundColor(.white)
+                        HStack {
+                            // Need to modify this code so that the number would change depending on the days passed since the first day the couple met
+                            Text("\(coupleDiaryMain.totalDaysMet)")
+                                .font(.system(size: 96, weight: .bold))
+                                .foregroundColor(.white)
+                            
+                            Text("days")
+                                .font(.system(size: 40, weight: .bold))
+                                .foregroundColor(.white)
+                        }
+                        
                     }
                     
                 }
                 
-            }
-            
-            // ListView for number of days the couple met - need to connect with Model & ViewModel
-            List(dateItems, id: \.title) { item in
-                HStack {
-                    Text(item.title)
-                        .font(.system(size: 24, weight: .bold))
-                    Spacer()
-                    Text(item.formattedDate)
-                        .font(.system(size: 16, weight: .medium))
+                // ListView for number of days the couple met - need to connect with Model & ViewModel
+                List(dateItems, id: \.title) { item in
+                    NavigationLink {
+                        AlbumView(daysString: item.title, endDate: item.date)
+                    } label: {
+                        HStack {
+                            Text(item.title)
+                                .font(.system(size: 24, weight: .bold))
+                            Spacer()
+                            Text(item.formattedDate)
+                                .font(.system(size: 16, weight: .medium))
+                        }
+                        
+                        .listRowSeparatorTint(.black)
+                    }.disabled(!item.isDaysPassed)
+                 
                 }
-                .listRowSeparatorTint(.black)
-            }
-            .listStyle(.plain)
-            .environment(\.defaultMinListRowHeight, 60)
-        }.onAppear(perform: {
-            //loads onboarding data that is stored in CoreData
-            coupleDiaryMain.loadOnboarding()
+                .listStyle(.plain)
+                .environment(\.defaultMinListRowHeight, 60)
+            }.onAppear(perform: {
+                //loads onboarding data that is stored in CoreData including date met.
+                coupleDiaryMain.loadOnboarding()
         })
+        }
    
     }
     
