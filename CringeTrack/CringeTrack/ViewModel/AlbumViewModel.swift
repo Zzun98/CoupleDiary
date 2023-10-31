@@ -66,6 +66,19 @@ class AlbumViewModel: ObservableObject {
             alertMessage = "Unable to update the image."
         }
     }
+    
+    func deleteAlbumItem(id: UUID) {
+        //deletes it from CoreData
+        do {
+            try CoreDataManager.deleteMemory(memoryId: id)
+        } catch {
+            showErrorAlert = true
+            alertTitle = "An error has occurred"
+            alertMessage = "Unable to delete alumn item."
+        }
+        
+    }
+    
     //this is a seperate function to update the image description and store it in CoreData.
     func updateImageDescription(id: UUID, imageDescription: String) {
         do {
