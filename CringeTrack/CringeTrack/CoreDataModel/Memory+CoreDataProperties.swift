@@ -16,7 +16,8 @@ extension Memory {
         return NSFetchRequest<Memory>(entityName: "Memory")
     }
     
-    @NSManaged public var id: UUID
+    //@NSManaged public var id: UUID
+    @NSManaged public var memoryId: UUID
     @NSManaged public var imageData: Data?
     @NSManaged public var imageName: String?
     @NSManaged public var memoryDate: Date?

@@ -19,7 +19,7 @@ class CoreDataManager {
     //this will store a memory onto the CoreData after the user adds a photo and description
     static func saveMemory(coupleMemory: CoupleMemoryStruct) throws {
         let newMemory = Memory(context: context)
-        newMemory.id = coupleMemory.id
+        newMemory.memoryId = coupleMemory.id
         newMemory.imageData = coupleMemory.imageData
         newMemory.memoryDate = coupleMemory.memoryDate
         newMemory.memoryDescription = coupleMemory.description
@@ -32,7 +32,7 @@ class CoreDataManager {
     //the dates will not be updated as it is fixed on that particular view.
     static func updateMemory(id: UUID, imageData: Data?, description: String?) throws {
         let fetchRequest: NSFetchRequest<Memory> = Memory.fetchRequest()
-        let specificMemoryPred: NSPredicate = NSPredicate(format: "id == %@", id.uuidString)
+        let specificMemoryPred: NSPredicate = NSPredicate(format: "memoryId == %@", id.uuidString)
         fetchRequest.predicate = specificMemoryPred
         let memoryItem = try context.fetch(fetchRequest).first
         //this will only update the image data if the user intentially changes it.
@@ -53,7 +53,7 @@ class CoreDataManager {
         fetchRequest.predicate = datePredicate
         var coupleMemoryTemp = [CoupleMemoryStruct]()
         for item in try context.fetch(fetchRequest) {
-            let coupleMemory = CoupleMemoryStruct(id: item.id, imageData: item.imageData, description: item.memoryDescription ?? "", memoryDate: item.memoryDate ?? Date())
+            let coupleMemory = CoupleMemoryStruct(id: item.memoryId, imageData: item.imageData, description: item.memoryDescription ?? "", memoryDate: item.memoryDate ?? Date())
             //adds it onto the array
             coupleMemoryTemp.append(coupleMemory)
         }

@@ -17,7 +17,7 @@ struct AlbumView: View {
     @State var endDate: Date //this is a variable that will display the images based until the end date when tapped from the home view.
     @State var imageData: Data?
     @State var onChangeCounter: Int = 0
-    
+    @State var showEditAlert: Bool = false
     var body: some View {
         ScrollView {
             LazyVGrid(columns: columns, spacing: 40) {
@@ -25,12 +25,12 @@ struct AlbumView: View {
                 ForEach($albumViewVM.albumnData) { $item in
                     if let imageData = item.imageData {
                         if let isImage = UIImage(data: imageData) {
-                            ZStackContent(albumnImage: isImage, showImagePicker: $showImagePicker, selectedImage: albumViewVM.selectedImage, onChangeCounter: $onChangeCounter, coupleMemory: item, albumnViewVM: albumViewVM, date: $endDate)
+                            ZStackContent(albumnImage: isImage, showImagePicker: $showImagePicker, selectedImage: albumViewVM.selectedImage, onChangeCounter: $onChangeCounter, coupleMemory: item, albumnViewVM: albumViewVM, date: $endDate, showEditAlert: $showEditAlert)
                         }
                     }
                 }
                 //this is an empty albumn image placeholder that will be used to add a new image.
-                ZStackContent(showImagePicker: $showImagePicker, onChangeCounter: $onChangeCounter, albumnViewVM: albumViewVM, date: $endDate)
+                ZStackContent(showImagePicker: $showImagePicker, onChangeCounter: $onChangeCounter, albumnViewVM: albumViewVM, date: $endDate, showEditAlert: $showEditAlert)
             }
             .padding()
         }.onAppear {
@@ -49,10 +49,10 @@ struct ZStackContent: View {
     @State var coupleMemory: CoupleMemoryStruct? //this variable will be an optional one and used only if the details needs to be updated such as removing an image or changing it on the albumn.
     @ObservedObject var albumnViewVM: AlbumViewModel
     @State var showMenu: Bool = false
-    @State var showEditAlert: Bool = false
+    
     @State var newDescription = ""
     @Binding var date: Date
-
+    @Binding var showEditAlert: Bool
     var body: some View {
         ZStack(alignment: .top) {
             Rectangle()
