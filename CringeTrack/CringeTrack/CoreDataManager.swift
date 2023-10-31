@@ -47,8 +47,10 @@ class CoreDataManager {
     }
     
     //this will only load data from CoreData and will not automatically convert it to an image as it is done from the frontend.
-    static func loadAlbumns() throws -> [CoupleMemoryStruct] {
+    static func loadAlbumns(date: Date) throws -> [CoupleMemoryStruct] {
         let fetchRequest: NSFetchRequest<Memory> = Memory.fetchRequest()
+        let datePredicate: NSPredicate = NSPredicate(format: "memoryDate == %@", date as CVarArg)
+        fetchRequest.predicate = datePredicate
         var coupleMemoryTemp = [CoupleMemoryStruct]()
         for item in try context.fetch(fetchRequest) {
             let coupleMemory = CoupleMemoryStruct(id: item.id, imageData: item.imageData, description: item.memoryDescription ?? "", memoryDate: item.memoryDate ?? Date())

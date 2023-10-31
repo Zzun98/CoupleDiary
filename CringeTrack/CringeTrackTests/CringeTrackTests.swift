@@ -38,6 +38,18 @@ final class CringeTrackTests: XCTestCase {
         print(vm.totalDaysMet)
         XCTAssertEqual(vm.totalDaysMet, 7)
     }
+    
+    func testDaysPassedForFuture() throws {
+        let dateComp = DateComponents(calendar: Calendar.current, year: 2028, month: 5, day: 24)
+        let dateItem = DateItem(title: "5 Years", date: dateComp.date!)
+        XCTAssertEqual(dateItem.isDaysPassed, false)
+    }
+    
+    func testDaysPassed() throws {
+        let dateComp = DateComponents(calendar: Calendar.current, year: 2018, month: 5, day: 24)
+        let dateItem = DateItem(title: "5 Years", date: dateComp.date!)
+        XCTAssertEqual(dateItem.isDaysPassed, true)
+    }
 
     func testPerformanceExample() throws {
         // This is an example of a performance test case.
