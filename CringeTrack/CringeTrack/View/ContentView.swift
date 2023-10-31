@@ -21,6 +21,7 @@ struct ContentView: View {
         }.onAppear(perform: {
             //determines if onboarding data is already stored on the device
             coupleDiaryMain.isConfigured()
+            coupleDiaryMain.loadBirthdayState()
         })
         
     }

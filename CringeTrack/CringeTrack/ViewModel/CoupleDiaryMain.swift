@@ -27,6 +27,12 @@ class CoupleDiaryMain: ObservableObject {
     @Published var isSetup: Bool = false //this is a boolean that will determine if the user is already used the app before or using it for the first time.
     @Published var currentImageState: ImageState = .empty
     @Published var dateMet: Date = Date()
+    @Published var showBirthdayOnHomeView: Bool = false {
+        didSet {
+            //saves it to user defaults
+            UserDefaultsManager.saveBirthdayStatus(showOnHomeScreen: showBirthdayOnHomeView)
+        }
+    }
     //calculates the total days they have met.
     var totalDaysMet: Int {
         let calendar = Calendar.current
@@ -120,6 +126,11 @@ class CoupleDiaryMain: ObservableObject {
             print(error)
             print(error.localizedDescription)
         }
+    }
+    
+    func loadBirthdayState() {
+        //loads it from user defaults
+        showBirthdayOnHomeView = UserDefaultsManager.readBirthdayState()
     }
     
 }

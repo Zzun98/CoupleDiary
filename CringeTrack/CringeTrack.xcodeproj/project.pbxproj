@@ -26,6 +26,7 @@
 		087D87DF2ADDAC2100367925 /* AlbumView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 087D87DE2ADDAC2100367925 /* AlbumView.swift */; };
 		087D87E12ADE59B900367925 /* NotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 087D87E02ADE59B900367925 /* NotificationView.swift */; };
 		087D87ED2ADF2EE400367925 /* CalendarHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 087D87EC2ADF2EE400367925 /* CalendarHelper.swift */; };
+		3236D64C2AF0B31B005DA052 /* UserDefaultsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3236D64B2AF0B31B005DA052 /* UserDefaultsManager.swift */; };
 		3241CB3E2AEF6965005235F9 /* CoupleDiaryMain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3241CB3D2AEF6965005235F9 /* CoupleDiaryMain.swift */; };
 		3241CB402AEF6E91005235F9 /* InSessionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3241CB3F2AEF6E91005235F9 /* InSessionView.swift */; };
 		3241CB422AEF7E3D005235F9 /* PartnerRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3241CB412AEF7E3D005235F9 /* PartnerRow.swift */; };
@@ -92,6 +93,7 @@
 		087D87DE2ADDAC2100367925 /* AlbumView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumView.swift; sourceTree = "<group>"; };
 		087D87E02ADE59B900367925 /* NotificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationView.swift; sourceTree = "<group>"; };
 		087D87EC2ADF2EE400367925 /* CalendarHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarHelper.swift; sourceTree = "<group>"; };
+		3236D64B2AF0B31B005DA052 /* UserDefaultsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsManager.swift; sourceTree = "<group>"; };
 		3241CB3D2AEF6965005235F9 /* CoupleDiaryMain.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoupleDiaryMain.swift; sourceTree = "<group>"; };
 		3241CB3F2AEF6E91005235F9 /* InSessionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InSessionView.swift; sourceTree = "<group>"; };
 		3241CB412AEF7E3D005235F9 /* PartnerRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartnerRow.swift; sourceTree = "<group>"; };
@@ -170,6 +172,7 @@
 				083E9DDC2ADB8BFB00E7444A /* Preview Content */,
 				327C98C72AE26DA20030CDBE /* CringeTrack.xcdatamodeld */,
 				3287E4ED2AE4EB870010C1C8 /* Persistence.swift */,
+				3236D64B2AF0B31B005DA052 /* UserDefaultsManager.swift */,
 			);
 			path = CringeTrack;
 			sourceTree = "<group>";
@@ -400,6 +403,7 @@
 				087D87ED2ADF2EE400367925 /* CalendarHelper.swift in Sources */,
 				3241CB3E2AEF6965005235F9 /* CoupleDiaryMain.swift in Sources */,
 				083E9DD72ADB8BFA00E7444A /* CringeTrackApp.swift in Sources */,
+				3236D64C2AF0B31B005DA052 /* UserDefaultsManager.swift in Sources */,
 				087D87E12ADE59B900367925 /* NotificationView.swift in Sources */,
 				32DED4202ADF69B6009981B2 /* CoupleMemoryStruct.swift in Sources */,
 				32DED41F2ADF69B6009981B2 /* CoupleImage.swift in Sources */,

@@ -27,7 +27,10 @@ struct DateItem {
 struct HomeView: View {
     @Environment(\.managedObjectContext) var contet
     @EnvironmentObject var coupleDiaryMain: CoupleDiaryMain
-    
+    @FetchRequest(
+        sortDescriptors: [NSSortDescriptor(keyPath: \Partner.primaryPartner, ascending: false)],
+        animation: .default)
+    private var partners: FetchedResults<Partner>
     // fetch today's date
     let currentDate: String = {
             let formatter = DateFormatter()
@@ -56,6 +59,10 @@ struct HomeView: View {
             DateItem(title: "10 years", date: self.getDateFromFirstMetToCurrent(days: nil, month: nil, year: 10))
         ]
         return dateItemArray
+    }
+    
+    var sortedDateItems: [DateItem] {
+        return renderListOfDatesWithBirthdays()
     }
     
     var body: some View {
@@ -93,7 +100,7 @@ struct HomeView: View {
                 }
                 
                 // ListView for number of days the couple met - need to connect with Model & ViewModel
-                List(dateItems, id: \.title) { item in
+                List(sortedDateItems, id: \.title) { item in
                     NavigationLink {
                         AlbumView(daysString: item.title, endDate: item.date)
                     } label: {
@@ -132,6 +139,37 @@ struct HomeView: View {
         let calendar = Calendar.current
         let newDate = calendar.date(byAdding: .day, value: days, to: coupleDiaryMain.dateMet)
         return newDate!
+    }
+    //this is a function that will return dates based on birthdays
+    func renderListOfDatesWithBirthdays() -> [DateItem] {
+        if partners.count == 2 {
+            var tempDates: [DateItem] = dateItems
+            let partner1Birthday = getcurrentBirthdayYear(dateOfBirth: partners[0].dateOfBirth ?? Date())
+            let partner2Birthday = getcurrentBirthdayYear(dateOfBirth: partners[1].dateOfBirth ?? Date())
+            if coupleDiaryMain.showBirthdayOnHomeView {
+                tempDates.append(DateItem(title: "\(partners[0].name ?? "")'s Birthday", date: partner1Birthday))
+                tempDates.append(DateItem(title: "\(partners[1].name ?? "")'s Birthday", date: partner2Birthday))
+            }
+            //returns the sorted dates array
+            return tempDates.sorted(by: {$0.date < $1.date})
+        } else {
+            return dateItems
+        }
+        
+        
+        
+    }
+    
+    //this is a function that will return the current birthday year instead of their date of birth.
+    func getcurrentBirthdayYear(dateOfBirth: Date) -> Date {
+        let calendar = Calendar.current
+        let yearOnly = calendar.component(.year, from: Date())
+        let monthOnly = calendar.component(.month, from: dateOfBirth)
+        let dayOnly = calendar.component(.day, from: dateOfBirth)
+        
+        let newDateComp = DateComponents(calendar: calendar, year: yearOnly, month: monthOnly, day: dayOnly)
+        
+        return newDateComp.date!
     }
 }
 
