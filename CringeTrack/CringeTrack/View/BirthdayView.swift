@@ -9,6 +9,7 @@ import SwiftUI
 
 struct BirthdayView: View {
     @Environment(\.managedObjectContext) var context
+    @EnvironmentObject var coupleDiaryMain: CoupleDiaryMain
     @FetchRequest(
         sortDescriptors: [NSSortDescriptor(keyPath: \Partner.primaryPartner, ascending: false)],
         animation: .default)
@@ -112,7 +113,7 @@ struct BirthdayView: View {
             
             // Show birthdays at home
             HStack {
-                Toggle(isOn: $birthdayOn) {
+                Toggle(isOn: $coupleDiaryMain.showBirthdayOnHomeView) {
                     
                 }
                 .toggleStyle(CheckboxStyle())
