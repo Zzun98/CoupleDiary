@@ -89,6 +89,20 @@ class CoreDataManager {
         try context.save()
     }
     
+    //this is a function that will delete a specific albumn item
+    static func deleteMemory(memoryId id: UUID) throws {
+        let fetchRequest: NSFetchRequest = Memory.fetchRequest()
+        let memoryIdPred: NSPredicate = NSPredicate(format: "id == %@", id.uuidString)
+        fetchRequest.predicate = memoryIdPred
+        if let result = try context.fetch(fetchRequest).first {
+            context.delete(result)
+        } else {
+            throw QueryError.noRecords(message: "Particular albumn item does not match with it's id.")
+        }
+        //updates the context
+        try context.save()
+    }
+    
     //this is a function to update partner's details including their name and birtday
     static func updatePartner(name: String, birthday: Date, isPrimaryPartner: Bool) throws {
         let fetchRequest: NSFetchRequest<Partner> = Partner.fetchRequest()

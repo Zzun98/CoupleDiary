@@ -37,6 +37,7 @@
 		328F9A6C2AEE6AB90050A0CB /* Memory+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 328F9A6A2AEE6AB90050A0CB /* Memory+CoreDataProperties.swift */; };
 		32DED41F2ADF69B6009981B2 /* CoupleImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32DED41D2ADF69B6009981B2 /* CoupleImage.swift */; };
 		32DED4202ADF69B6009981B2 /* CoupleMemoryStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32DED41E2ADF69B6009981B2 /* CoupleMemoryStruct.swift */; };
+		3BD6E8722AF0D905004A30E6 /* Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BD6E8712AF0D905004A30E6 /* Test.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -105,6 +106,7 @@
 		328F9A6A2AEE6AB90050A0CB /* Memory+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Memory+CoreDataProperties.swift"; path = "CringeTrack/CoreDataModel/Memory+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		32DED41D2ADF69B6009981B2 /* CoupleImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoupleImage.swift; sourceTree = "<group>"; };
 		32DED41E2ADF69B6009981B2 /* CoupleMemoryStruct.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoupleMemoryStruct.swift; sourceTree = "<group>"; };
+		3BD6E8712AF0D905004A30E6 /* Test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Test.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -213,6 +215,7 @@
 				087D87DE2ADDAC2100367925 /* AlbumView.swift */,
 				3241CB3F2AEF6E91005235F9 /* InSessionView.swift */,
 				3241CB412AEF7E3D005235F9 /* PartnerRow.swift */,
+				3BD6E8712AF0D905004A30E6 /* Test.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -403,6 +406,7 @@
 				087D87E12ADE59B900367925 /* NotificationView.swift in Sources */,
 				32DED4202ADF69B6009981B2 /* CoupleMemoryStruct.swift in Sources */,
 				32DED41F2ADF69B6009981B2 /* CoupleImage.swift in Sources */,
+				3BD6E8722AF0D905004A30E6 /* Test.swift in Sources */,
 				327C98C92AE26DA20030CDBE /* CringeTrack.xcdatamodeld in Sources */,
 				328F9A6B2AEE6AB90050A0CB /* Memory+CoreDataClass.swift in Sources */,
 				084F0E7F2AEE65940008E625 /* MonthStruct.swift in Sources */,

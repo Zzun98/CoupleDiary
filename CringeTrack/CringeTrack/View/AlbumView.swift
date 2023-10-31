@@ -16,6 +16,7 @@ struct AlbumView: View {
     @State var endDate: Date? //this is a variable that will display the images based until the end date when tapped from the home view.
     @State var imageData: Data?
     @State var onChangeCounter: Int = 0
+    
     var body: some View {
         ScrollView {
             LazyVGrid(columns: columns, spacing: 40) {
@@ -23,7 +24,7 @@ struct AlbumView: View {
                 ForEach($albumViewVM.albumnData) { $item in
                     if let imageData = item.imageData {
                         if let isImage = UIImage(data: imageData) {
-                            ZStackContent(albumnImage: isImage, showImagePicker: $showImagePicker, selectedImage: albumViewVM.selectedImage, onChangeCounter: $onChangeCounter, albumnViewVM: albumViewVM)
+                            ZStackContent(albumnImage: isImage, showImagePicker: $showImagePicker, selectedImage: albumViewVM.selectedImage, onChangeCounter: $onChangeCounter, coupleMemory: item, albumnViewVM: albumViewVM)
                         }
                     }
                 }
@@ -46,6 +47,7 @@ struct ZStackContent: View {
     @Binding var onChangeCounter: Int
     @State var coupleMemory: CoupleMemoryStruct? //this variable will be an optional one and used only if the details needs to be updated such as removing an image or changing it on the albumn.
     @ObservedObject var albumnViewVM: AlbumViewModel
+    @State var showMenu: Bool = false
     
     var body: some View {
         ZStack(alignment: .top) {
@@ -68,16 +70,39 @@ struct ZStackContent: View {
             
             // Add action to add photo here
             // After uploading photo, add code to change description of each photo
-            
-            PhotosPicker(selection: $selectedImage, matching: .images) {
-                if let haveUiImage = albumnImage {
-                    Image(uiImage: haveUiImage)
-                        .resizable()
-                        .aspectRatio(contentMode: .fill)
-                        .frame(width: 150, height: 150)
-                        .padding(.top, 110)
-                        .clipped()
-                } else {
+            if let coupleMemory = coupleMemory {
+                Menu {
+                    PhotosPicker("Change Photo", selection: $selectedImage)
+                    Button("Delete Photo") {
+                        Task {
+                            albumnViewVM.deleteAlbumItem(id: coupleMemory.id)
+                            //reloads the data model
+                            albumnViewVM.loadAlbumItems()
+                        }
+                        
+                        
+                    }
+                        
+                    
+                } label: {
+                    if let haveUiImage = albumnImage {
+                        Image(uiImage: haveUiImage)
+                            .resizable()
+                            .aspectRatio(contentMode: .fill)
+                            .frame(width: 150, height: 150)
+                            .padding(.top, 110)
+                            .clipped()
+                    } else {
+                        Image("AddPhoto")
+                            .resizable()
+                            .aspectRatio(contentMode: .fill)
+                            .frame(width: 50, height: 50)
+                            .padding(.top, 110)
+                            .clipped()
+                    }
+                }
+            } else {
+                PhotosPicker(selection: $selectedImage, matching: .images) {
                     Image("AddPhoto")
                         .resizable()
                         .aspectRatio(contentMode: .fill)
@@ -85,8 +110,9 @@ struct ZStackContent: View {
                         .padding(.top, 110)
                         .clipped()
                 }
-                
             }
+            
+            
             
             // The text here should change depending on the user's input
             // Up to 200 characters per photo
@@ -149,7 +175,11 @@ struct ZStackContent: View {
                 }
             
             }
-        }
+        }.actionSheet(isPresented: $showMenu, content: {
+            ActionSheet(title: Text("Album Item"), buttons: [
+                
+            ])
+        })
     }
 }
 
