@@ -14,8 +14,8 @@
             filePath = "CringeTrack/View/AlbumView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "116"
-            endingLineNumber = "116"
+            startingLineNumber = "114"
+            endingLineNumber = "114"
             landmarkName = "body"
             landmarkType = "24">
             <Locations>
@@ -100,69 +100,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "DE42417F-B5AF-461F-8C45-D14DE6B92B0C"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "CringeTrack/View/AlbumView.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "162"
-            endingLineNumber = "162"
-            landmarkName = "body"
-            landmarkType = "24">
-            <Locations>
-               <Location
-                  uuid = "DE42417F-B5AF-461F-8C45-D14DE6B92B0C - 90661cd4aa703f49"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "(3) suspend resume partial function for closure #1 @Sendable () async -&gt; () in closure #2 (Swift.Optional&lt;_PhotosUI_SwiftUI.PhotosPickerItem&gt;, Swift.Optional&lt;_PhotosUI_SwiftUI.PhotosPickerItem&gt;) -&gt; () in CringeTrack.ZStackContent.body.getter : some"
-                  moduleName = "CringeTrack"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/christopher.averkos/GitHub/CoupleDiary/CringeTrack/CringeTrack/View/AlbumView.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "142"
-                  endingLineNumber = "142"
-                  offsetFromSymbolStart = "852">
-               </Location>
-               <Location
-                  uuid = "DE42417F-B5AF-461F-8C45-D14DE6B92B0C - 90661cd4aa703f49"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "(3) suspend resume partial function for closure #1 @Sendable () async -&gt; () in closure #2 (Swift.Optional&lt;_PhotosUI_SwiftUI.PhotosPickerItem&gt;, Swift.Optional&lt;_PhotosUI_SwiftUI.PhotosPickerItem&gt;) -&gt; () in CringeTrack.ZStackContent.body.getter : some"
-                  moduleName = "CringeTrack"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/christopher.averkos/GitHub/CoupleDiary/CringeTrack/CringeTrack/View/AlbumView.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "142"
-                  endingLineNumber = "142"
-                  offsetFromSymbolStart = "792">
-               </Location>
-               <Location
-                  uuid = "DE42417F-B5AF-461F-8C45-D14DE6B92B0C - 90661cd4aa703bce"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "(3) suspend resume partial function for closure #1 @Sendable () async -&gt; () in closure #2 (Swift.Optional&lt;_PhotosUI_SwiftUI.PhotosPickerItem&gt;, Swift.Optional&lt;_PhotosUI_SwiftUI.PhotosPickerItem&gt;) -&gt; () in CringeTrack.ZStackContent.body.getter : some"
-                  moduleName = "CringeTrack"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/christopher.averkos/GitHub/CoupleDiary/CringeTrack/CringeTrack/View/AlbumView.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "169"
-                  endingLineNumber = "169"
-                  offsetFromSymbolStart = "792">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "BBCCAB7C-4BB4-4761-9DE4-F996DC97548B"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
@@ -170,8 +107,8 @@
             filePath = "CringeTrack/View/AlbumView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "149"
-            endingLineNumber = "149"
+            startingLineNumber = "147"
+            endingLineNumber = "147"
             landmarkName = "body"
             landmarkType = "24">
             <Locations>

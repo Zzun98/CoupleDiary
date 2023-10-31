@@ -49,7 +49,10 @@ struct ZStackContent: View {
     @State var coupleMemory: CoupleMemoryStruct? //this variable will be an optional one and used only if the details needs to be updated such as removing an image or changing it on the albumn.
     @ObservedObject var albumnViewVM: AlbumViewModel
     @State var showMenu: Bool = false
+    @State var showEditAlert: Bool = false
+    @State var newDescription = ""
     @Binding var date: Date
+
     var body: some View {
         ZStack(alignment: .top) {
             Rectangle()
@@ -129,7 +132,7 @@ struct ZStackContent: View {
                 
                 // Pencil-shaped Button that allows users to change the description
                 Button(action: {
-                    
+                    showEditAlert = true
                 }) {
                     Image("Pencil")
                         .resizable()
@@ -141,39 +144,63 @@ struct ZStackContent: View {
             }
             
             
-            Text("(Write a short description)")
+            Text(description ?? "(Write a short description)")
                 .font(.system(size: 20, weight: .semibold))
                 .frame(width: UIScreen.main.bounds.width * 0.7, alignment: .topLeading)
                 .padding(.top, 260)
         }
         .onChange(of: selectedImage) { oldImage, newImage in
-                if let newImage = newImage {
-                    Task {
-                        
-                        if let newImageData = try! await albumnViewVM.convertToBinaryData(imageFromPhotoPicker: newImage) {
-                            print("Image selection triggered.")
-                            //this will update the existing albumn item if the user wants to change an image.
-                            if let existingAlbumnItem = coupleMemory {
-                                albumnViewVM.updateImage(id: existingAlbumnItem.id)
-                            } else {
-                                onChangeCounter += 1
-                                //this will store the images to core data and reload it.
-                                let coupleMemory = CoupleMemoryStruct(id: UUID(), imageData: newImageData, description: "(Write a description)", memoryDate: date)
-                                albumnViewVM.saveImage(coupleMemory: coupleMemory)
-                                //reloads the view model
-                                albumnViewVM.loadAlbumItems(date: date)
-                              
-                            }
+            if let newImage = newImage {
+                Task {
+                    if let newImageData = try! await albumnViewVM.convertToBinaryData(imageFromPhotoPicker: newImage) {
+                        print("Image selection triggered.")
+                        //this will update the existing albumn item if the user wants to change an image.
+                        if let existingAlbumnItem = coupleMemory {
+                            albumnViewVM.updateImage(id: existingAlbumnItem.id)
+                        } else {
+                            onChangeCounter += 1
+                            //this will store the images to core data and reload it.
+                            let coupleMemory = CoupleMemoryStruct(id: UUID(), imageData: newImageData, description: "(Write a description)", memoryDate: date)
+                            albumnViewVM.saveImage(coupleMemory: coupleMemory)
+                            //reloads the view model
+                            albumnViewVM.loadAlbumItems(date: date)
+                            
                         }
                     }
                 }
+           }
             
-            
-        }.actionSheet(isPresented: $showMenu, content: {
-            ActionSheet(title: Text("Album Item"), buttons: [
+        
+         
+        
+        }.alert("Write your description", isPresented: $showEditAlert) {
+            TextField("", text: $newDescription)
+            Button("Cancel", action: {
+                showEditAlert = false
+            })
+            Button("Confirm", action: {
+                if newDescription.count <= 200 {
+                    if let id = coupleMemory?.id {
+                        //updates the description on the view side
+                        description = newDescription
+                        //updates it on the backend.
+                        albumnViewVM.updateImageDescription(id: id, imageDescription: newDescription)
+                    }
+                } else {
+                    //displays an alert if charcater count exceeds 200.
+                    albumnViewVM.showErrorAlert = true
+                    albumnViewVM.alertTitle = "Description is too long"
+                    albumnViewVM.alertMessage = "You can only write up to 200 characters for the description."
+                }
+            })
                 
-            ])
-        })
+
+        }.alert(isPresented: $albumnViewVM.showErrorAlert) {
+            Alert(
+                title: Text(albumnViewVM.alertTitle),
+                message: Text(albumnViewVM.alertMessage)
+            )
+        }
     }
 }
 
