@@ -25,7 +25,7 @@ struct AlbumView: View {
                 ForEach($albumViewVM.albumnData) { $item in
                     if let imageData = item.imageData {
                         if let isImage = UIImage(data: imageData) {
-                            ZStackContent(albumnImage: isImage, showImagePicker: $showImagePicker, selectedImage: albumViewVM.selectedImage, onChangeCounter: $onChangeCounter, coupleMemory: item, albumnViewVM: albumViewVM, date: $endDate, showEditAlert: $showEditAlert)
+                            ZStackContent(albumnImage: isImage, description: item.description, showImagePicker: $showImagePicker, selectedImage: albumViewVM.selectedImage, onChangeCounter: $onChangeCounter, coupleMemory: item, albumnViewVM: albumViewVM, date: $endDate, showEditAlert: $showEditAlert, itemId: item.id)
                         }
                     }
                 }
@@ -53,6 +53,7 @@ struct ZStackContent: View {
     @State var newDescription = ""
     @Binding var date: Date
     @Binding var showEditAlert: Bool
+    @State var itemId: UUID?
     var body: some View {
         ZStack(alignment: .top) {
             Rectangle()
@@ -83,8 +84,6 @@ struct ZStackContent: View {
                             //reloads the data model
                             albumnViewVM.loadAlbumItems(date: date)
                         }
-                        
-                        
                     }
                         
                     
@@ -124,7 +123,7 @@ struct ZStackContent: View {
                 Button {
                     
                 } label: {
-                    Text("(Write a short description)")
+                    Text(description ?? "(Write a short description)")
                 }
                 .font(.system(size: 20, weight: .semibold))
                 //.frame(width: UIScreen.main.bounds.width * 0.7, alignment: .topLeading)
@@ -144,10 +143,10 @@ struct ZStackContent: View {
             }
             
             
-            Text(description ?? "(Write a short description)")
-                .font(.system(size: 20, weight: .semibold))
-                .frame(width: UIScreen.main.bounds.width * 0.7, alignment: .topLeading)
-                .padding(.top, 260)
+           // Text(description ?? "(Write a short description)")
+                //.font(.system(size: 20, weight: .semibold))
+                //.frame(width: UIScreen.main.bounds.width * 0.7, alignment: .topLeading)
+                //.padding(.top, 260)
         }
         .onChange(of: selectedImage) { oldImage, newImage in
             if let newImage = newImage {
@@ -180,11 +179,14 @@ struct ZStackContent: View {
             })
             Button("Confirm", action: {
                 if newDescription.count <= 200 {
-                    if let id = coupleMemory?.id {
-                        //updates the description on the view side
-                        description = newDescription
-                        //updates it on the backend.
-                        albumnViewVM.updateImageDescription(id: id, imageDescription: newDescription)
+                    if let id = itemId {
+                        Task {
+                            //updates the description on the view side
+                            self.description = newDescription
+                            //updates it on the backend.
+                            albumnViewVM.updateImageDescription(id: id, imageDescription: newDescription)
+                        }
+                      
                     }
                 } else {
                     //displays an alert if charcater count exceeds 200.
