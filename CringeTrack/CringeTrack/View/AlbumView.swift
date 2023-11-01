@@ -156,10 +156,10 @@ struct ZStackContent: View {
             }
             
             
-            Text(description ?? "(Write a short description)")
+            /*Text(description ?? "(Write a short description)")
                 .font(.system(size: 20, weight: .semibold))
                 .frame(width: UIScreen.main.bounds.width * 0.7, alignment: .topLeading)
-                .padding(.top, 260)
+                .padding(.top, 260)*/
         }
         .onChange(of: selectedImage) { oldImage, newImage in
             if let newImage = newImage {
