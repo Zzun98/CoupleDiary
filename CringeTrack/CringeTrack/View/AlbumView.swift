@@ -84,32 +84,16 @@ struct ZStackContent: View {
                         .foregroundColor(.black)
                         .cornerRadius(20)
                     
-                    Button(action: {
+                    Button {
                         Task {
                             albumnViewVM.deleteAlbumItem(id: coupleMemory.id)
-                //reloads the data model
+                            //reloads the data model
                             albumnViewVM.loadAlbumItems(date: date)
                         }
                     }
                         
-                    
-                } label: {
-                    if let haveUiImage = albumnImage {
-                        Image(uiImage: haveUiImage)
-                            .resizable()
-                            .aspectRatio(contentMode: .fill)
-                            .frame(width: 150, height: 150)
-                            .padding(.top, 110)
-                            .clipped()
-                    } else {
-                        Image("AddPhoto")
-                            .resizable()
-                            .aspectRatio(contentMode: .fill)
-                            .frame(width: 50, height: 50)
-                            .padding(.top, 110)
-                            .clipped()
-                    }
-                    }) {
+                    label: {
+                     
                 Text("Delete")
                     .font(.system(size: 20, weight: .semibold))
                     .frame(width: 160, height: 40)
@@ -235,3 +219,20 @@ struct ZStackContent: View {
 #Preview {
     AlbumView(daysString: "7 Days", endDate: Date())
 }
+/*
+if let haveUiImage = albumnImage {
+    Image(uiImage: haveUiImage)
+        .resizable()
+        .aspectRatio(contentMode: .fill)
+        .frame(width: 150, height: 150)
+        .padding(.top, 110)
+        .clipped()
+} else {
+    Image("AddPhoto")
+        .resizable()
+        .aspectRatio(contentMode: .fill)
+        .frame(width: 50, height: 50)
+        .padding(.top, 110)
+        .clipped()
+}
+})*/
