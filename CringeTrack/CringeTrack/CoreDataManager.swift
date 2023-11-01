@@ -94,7 +94,7 @@ class CoreDataManager {
     //this is a function that will delete a specific albumn item
     static func deleteMemory(memoryId id: UUID) throws {
         let fetchRequest: NSFetchRequest = Memory.fetchRequest()
-        let memoryIdPred: NSPredicate = NSPredicate(format: "id == %@", id.uuidString)
+        let memoryIdPred: NSPredicate = NSPredicate(format: "memoryId == %@", id.uuidString)
         fetchRequest.predicate = memoryIdPred
         if let result = try context.fetch(fetchRequest).first {
             context.delete(result)
