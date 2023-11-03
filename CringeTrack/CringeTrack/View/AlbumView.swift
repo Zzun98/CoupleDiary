@@ -18,6 +18,7 @@ struct AlbumView: View {
     @State var imageData: Data?
     @State var onChangeCounter: Int = 0
     @State var showEditAlert: Bool = false
+    
     var body: some View {
         ScrollView {
             LazyVGrid(columns: columns, spacing: 40) {
@@ -34,6 +35,8 @@ struct AlbumView: View {
             }
             .padding()
         }.onAppear {
+            //prints the current date
+            print(endDate)
             //loads it from CoreData to the VM
             albumViewVM.loadAlbumItems(date: endDate)
         }.navigationTitle(daysString).navigationBarTitleDisplayMode(.inline)
@@ -126,7 +129,7 @@ struct ZStackContent: View {
                     .padding(.top, 110)
                     .clipped()
             }
-            }
+        }
             
             
             
@@ -136,7 +139,7 @@ struct ZStackContent: View {
                 Button {
                     
                 } label: {
-                    Text("(Write a short description)")
+                    Text(description ?? "(Write a short description)")
                 }
                 .font(.system(size: 20, weight: .semibold))
                 //.frame(width: UIScreen.main.bounds.width * 0.7, alignment: .topLeading)
