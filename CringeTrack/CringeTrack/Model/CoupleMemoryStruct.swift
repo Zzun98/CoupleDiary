@@ -10,7 +10,7 @@ import SwiftUI
 
 
 //this is a struct that will store a photo and a discription
-struct CoupleMemoryStruct: Identifiable {
+struct CoupleMemoryStruct: Identifiable, Hashable{
     var id: UUID
     var imageData: Data?
     var description: String
