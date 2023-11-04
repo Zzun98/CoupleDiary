@@ -17,7 +17,7 @@ struct AlbumView: View {
     @State var endDate: Date //this is a variable that will display the images based until the end date when tapped from the home view.
     @State var imageData: Data?
     @State var onChangeCounter: Int = 0
-    @State var showEditAlert: Bool = false
+    //@State var showEditAlert: Bool = false
     @State var emptyData: Data? = nil //this is a state variable that will pass empty data as a binding.
     @State var placeholderId: UUID = UUID()
     @State var placeHolderDescription: String = "(write a short description)"
@@ -27,13 +27,13 @@ struct AlbumView: View {
                 
                 ForEach($albumViewVM.albumnData, id: \.self) { $item in
                     Group {
-                        ZStackContent(albumnImageData: $item.imageData, description: $item.description, showImagePicker: $showImagePicker, selectedImage: albumViewVM.selectedImage, onChangeCounter: $onChangeCounter, albumId: $item.id, date: $endDate, showEditAlert: $showEditAlert, itemId: item.id)
+                        ZStackContent(albumnImageData: $item.imageData, description: $item.description, showImagePicker: $showImagePicker, selectedImage: albumViewVM.selectedImage, onChangeCounter: $onChangeCounter, albumId: $item.id, date: $endDate, itemId: item.id)
                     }
                     
                 }
                 //this is an empty albumn image placeholder that will be used to add a new image.
                
-                ZStackContent(albumnImageData: $emptyData, description: $placeHolderDescription, showImagePicker: $showImagePicker,  onChangeCounter: $onChangeCounter, albumId: $placeholderId, date: $endDate, showEditAlert: $showEditAlert)
+                ZStackContent(albumnImageData: $emptyData, description: $placeHolderDescription, showImagePicker: $showImagePicker,  onChangeCounter: $onChangeCounter, albumId: $placeholderId, date: $endDate)
             }
             .padding()
         }.onAppear {
@@ -59,7 +59,7 @@ struct ZStackContent: View {
     
     @State var newDescription = ""
     @Binding var date: Date
-    @Binding var showEditAlert: Bool
+    @State var showEditAlert: Bool = false
     @State var itemId: UUID?
     var body: some View {
         ZStack(alignment: .top) {
@@ -165,9 +165,9 @@ struct ZStackContent: View {
                         if albumnImageData != nil {
                             Task {
                                 //updates the description on the view side
-                                //description = newDescription
+                                description = newDescription
                                 //updates it on the backend.
-                                albumViewVM.updateImageDescription(id: albumId, imageDescription: description)
+                                albumViewVM.updateImageDescription(id: albumId, imageDescription: newDescription)
                             }
                         } else {
                             albumViewVM.showErrorAlert = true
