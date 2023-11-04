@@ -8,6 +8,7 @@
 import Foundation
 import SwiftUI
 import CoreData
+import PromiseKit
 
 enum QueryError: Error {
     case noRecords(message: String)
@@ -30,34 +31,60 @@ class CoreDataManager {
     
     //this will be used to about a couple memory item which is the albumn image with the description.
     //the dates will not be updated as it is fixed on that particular view.
-    static func updateMemory(id: UUID, imageData: Data?, description: String?) throws {
-        let fetchRequest: NSFetchRequest<Memory> = Memory.fetchRequest()
-        let specificMemoryPred: NSPredicate = NSPredicate(format: "memoryId == %@", id.uuidString)
-        fetchRequest.predicate = specificMemoryPred
-        let memoryItem = try context.fetch(fetchRequest).first
-        //this will only update the image data if the user intentially changes it.
-        if let imageData = imageData {
-            memoryItem?.imageData = imageData
+    static func updateMemory(id: UUID, imageData: Data?, description: String?) -> Promise<Void> {
+        return Promise {
+            seal in
+            do {
+                let fetchRequest: NSFetchRequest<Memory> = Memory.fetchRequest()
+                let specificMemoryPred: NSPredicate = NSPredicate(format: "memoryId == %@", id.uuidString)
+                fetchRequest.predicate = specificMemoryPred
+                let memoryItem = try context.fetch(fetchRequest).first
+                //this will only update the image data if the user intentially changes it.
+                if let memoryItem = memoryItem {
+                    if let imageData = imageData {
+                        memoryItem.imageData = imageData
+                    }
+                    if let description = description {
+                        memoryItem.memoryDescription = description
+                    }
+                }
+                else {
+                    seal.reject(QueryError.noRecords(message: "The Specific memory cannot be found"))
+                }
+              
+                //saves it to the context
+                try context.save()
+                seal.fulfill(())
+            } catch {
+                seal.reject(error)
+            }
         }
-        if let description = description {
-            memoryItem?.memoryDescription = description
-        }
-        //saves it to the context
-        try context.save()
+        
+        
     }
     
     //this will only load data from CoreData and will not automatically convert it to an image as it is done from the frontend.
-    static func loadAlbumns(date: Date) throws -> [CoupleMemoryStruct] {
-        let fetchRequest: NSFetchRequest<Memory> = Memory.fetchRequest()
-        let datePredicate: NSPredicate = NSPredicate(format: "memoryDate == %@", date as CVarArg)
-        fetchRequest.predicate = datePredicate
-        var coupleMemoryTemp = [CoupleMemoryStruct]()
-        for item in try context.fetch(fetchRequest) {
-            let coupleMemory = CoupleMemoryStruct(id: item.memoryId, imageData: item.imageData, description: item.memoryDescription ?? "", memoryDate: item.memoryDate ?? Date())
-            //adds it onto the array
-            coupleMemoryTemp.append(coupleMemory)
+    static func loadAlbumns(date: Date) -> Promise<[CoupleMemoryStruct]> {
+        return Promise {
+            seal in
+            do {
+                let fetchRequest: NSFetchRequest<Memory> = Memory.fetchRequest()
+                let datePredicate: NSPredicate = NSPredicate(format: "memoryDate == %@", date as CVarArg)
+                fetchRequest.predicate = datePredicate
+                var coupleMemoryTemp = [CoupleMemoryStruct]()
+                for item in try context.fetch(fetchRequest) {
+                    let coupleMemory = CoupleMemoryStruct(id: item.memoryId, imageData: item.imageData, description: item.memoryDescription ?? "", memoryDate: item.memoryDate ?? Date())
+                    //adds it onto the array
+                    coupleMemoryTemp.append(coupleMemory)
+                }
+                seal.fulfill(coupleMemoryTemp)
+            } catch {
+                seal.reject(error)
+            }
+           
+            
         }
-        return coupleMemoryTemp
+      
     }
     
     //this is a helper function that will store a partner onto CoreData including their birthdays.

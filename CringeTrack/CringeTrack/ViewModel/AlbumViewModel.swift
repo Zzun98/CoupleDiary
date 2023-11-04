@@ -26,6 +26,7 @@ class AlbumViewModel: ObservableObject {
     @Published var showErrorAlert: Bool = false
     @Published var alertTitle: String = ""
     @Published var alertMessage: String = ""
+    @Published var currentDate: Date = Date()
     
     //this function will process uploading the image from the image picker to CoreData
     func saveImage(coupleMemory: CoupleMemoryStruct) {
@@ -44,26 +45,34 @@ class AlbumViewModel: ObservableObject {
     //this function will fetch it from core data and store it in memory, this will not decode an image as it is done from the frontend.
     @MainActor
     func loadAlbumItems(date: Date) {
-        do {
-            self.albumnData = try CoreDataManager.loadAlbumns(date: date)
-            print("Loaded albumn data.")
-            print("There are \(self.albumnData.count) memories")
-        } catch {
-            print("Failed to load albumns.")
-            print(error)
-            print(error.localizedDescription)
-        }
+        
+             CoreDataManager.loadAlbumns(date: date)
+            .done {
+                memories in
+                self.albumnData = memories
+                print("Loaded albumn data.")
+            } .catch {
+                error in
+                
+                print("There are \(self.albumnData.count) memories")
+            
+                print("Failed to load albumns.")
+                print(error)
+                print(error.localizedDescription)
+            }
+            
+        
         
     }
     
-    func updateImage(id: UUID) {
-        do {
-            //updates it on the Core Data persistance
-            try CoreDataManager.updateMemory(id: id, imageData: selectedImageBinary, description: nil)
-        } catch {
-            showErrorAlert = true
-            alertTitle = "An error has occurred"
-            alertMessage = "Unable to update the image."
+    func updateImage(id: UUID, imageData: Data) {
+        
+        //updates it on the Core Data persistance
+        CoreDataManager.updateMemory(id: id, imageData: imageData, description: nil)
+            .catch { error in
+                self.showErrorAlert = true
+                self.alertTitle = "An error has occurred"
+                self.alertMessage = "Unable to update the image."
         }
     }
     
@@ -81,14 +90,14 @@ class AlbumViewModel: ObservableObject {
     
     //this is a seperate function to update the image description and store it in CoreData.
     func updateImageDescription(id: UUID, imageDescription: String) {
-        do {
-            try CoreDataManager.updateMemory(id: id, imageData: nil, description: imageDescription)
-        } catch {
-            showErrorAlert = true
-            alertTitle = "An error has occurred."
-            alertMessage = "Unable to update image description."
-            print(error)
-            print(error.localizedDescription)
+        
+        CoreDataManager.updateMemory(id: id, imageData: nil, description: imageDescription)
+            .catch { error in
+                self.showErrorAlert = true
+                self.alertTitle = "An error has occurred."
+                self.alertMessage = "Unable to update image description."
+                print(error)
+                print(error.localizedDescription)
         }
     }
     
