@@ -69,7 +69,11 @@ class CoreDataManager {
             seal in
             do {
                 let fetchRequest: NSFetchRequest<Memory> = Memory.fetchRequest()
-                let datePredicate: NSPredicate = NSPredicate(format: "memoryDate == %@", date as CVarArg)
+                //this will expand the ranges of date and time from 0:00 to 23:59
+                let calendar = Calendar.current
+                let startDate = calendar.startOfDay(for: date)
+                let endDate = calendar.date(byAdding: .day, value: 1, to: date)
+                let datePredicate: NSPredicate = NSPredicate(format: "(memoryDate >= %@) AND (memoryDate < %@)", startDate as CVarArg, endDate! as CVarArg)
                 fetchRequest.predicate = datePredicate
                 var coupleMemoryTemp = [CoupleMemoryStruct]()
                 for item in try context.fetch(fetchRequest) {

@@ -79,11 +79,21 @@ struct CalendarView: View {
     
     //this function will be called when the day is tapped.
     func getDateFromView(day: Int) -> Date {
-        
-        print("Tapped day \(day)")
-        let selectedMonth = currentMonth
+      
         let calendar = Calendar.current
-        let tappedDate = calendar.date(bySetting: .day, value: day + 1, of: selectedMonth)
+        let startTime = calendar.startOfDay(for: currentMonth)
+        let currentDateComp = calendar.dateComponents([.year, .month], from: startTime)
+        let dateComp = DateComponents(calendar: calendar, year: currentDateComp.year!, month: currentDateComp.month!, day: 1)
+        let newDate = dateComp.date
+        //print("\(currentDateComp.day!) \(currentDateComp.month!)")
+        var tappedDate: Date?
+        //this will determine if the user taps a date greater then 1, if it is, then it will add the days, otherwise, it will just return the first day of the month.
+        if day > 1 {
+            tappedDate = calendar.date(byAdding: .day, value: (day - 1), to: newDate!)
+        } else {
+            tappedDate = newDate!
+        }
+        
         return tappedDate ?? Date()
     }
         
