@@ -8,7 +8,7 @@
 import SwiftUI
 
 // for the array of days the couple met
-struct DateItem {
+struct DateItem: Hashable {
     let title: String
     var date: Date
     //this is a string computed property that will return a date in a date format for the user to view.
@@ -44,6 +44,9 @@ struct HomeView: View {
     var dateItems: [DateItem] {
         let dateItemArray: [DateItem] = [
             DateItem(title: "Day we met", date: coupleDiaryMain.dateMet),
+            DateItem(title: "10 Days", date: self.getDateFromDaysOnly(days: 10)),
+            DateItem(title: "30 Days", date: self.getDateFromDaysOnly(days: 30)),
+            DateItem(title: "60 Days", date: self.getDateFromDaysOnly(days: 60)),
             DateItem(title: "100 days", date: self.getDateFromDaysOnly(days: 100) ),
             DateItem(title: "200 days", date: self.getDateFromDaysOnly(days: 200)),
             DateItem(title: "300 days", date: self.getDateFromDaysOnly(days: 300)),
@@ -100,7 +103,7 @@ struct HomeView: View {
                 }
                 
                 // ListView for number of days the couple met - need to connect with Model & ViewModel
-                List(sortedDateItems, id: \.title) { item in
+                List(sortedDateItems, id: \.self) { item in
                     NavigationLink {
                         AlbumView(daysString: item.title, endDate: item.date)
                     } label: {
@@ -142,34 +145,73 @@ struct HomeView: View {
     }
     //this is a function that will return dates based on birthdays
     func renderListOfDatesWithBirthdays() -> [DateItem] {
-        if partners.count == 2 {
+        
             var tempDates: [DateItem] = dateItems
-            let partner1Birthday = getcurrentBirthdayYear(dateOfBirth: partners[0].dateOfBirth ?? Date())
-            let partner2Birthday = getcurrentBirthdayYear(dateOfBirth: partners[1].dateOfBirth ?? Date())
             if coupleDiaryMain.showBirthdayOnHomeView {
-                tempDates.append(DateItem(title: "\(partners[0].name ?? "")'s Birthday", date: partner1Birthday))
-                tempDates.append(DateItem(title: "\(partners[1].name ?? "")'s Birthday", date: partner2Birthday))
+                for birthday in getAllBirthdays() {
+                    tempDates.append(birthday)
+                    print("Added birthday \(birthday.date)")
+                }
             }
             //returns the sorted dates array
             return tempDates.sorted(by: {$0.date < $1.date})
-        } else {
-            return dateItems
-        }
+       
         
         
         
     }
     
-    //this is a function that will return the current birthday year instead of their date of birth.
-    func getcurrentBirthdayYear(dateOfBirth: Date) -> Date {
+    func getAllBirthdays() -> [DateItem] {
+        var allBirthDays: [DateItem] = []
+        //this will get the last date
+        if let lastDateItem = dateItems.last {
+            let calendar = Calendar(identifier: .gregorian)
+            let lastDateComp = calendar.dateComponents([.year], from: lastDateItem.date)
+            
+            let dateMetComp = calendar.dateComponents([.year], from: coupleDiaryMain.dateMet)
+            
+            if let dateMetYear = dateMetComp.year, let lastYear = lastDateComp.year {
+                //print("Date met: \(dateMetComp.year)")
+                var yearCounter = dateMetYear
+                while yearCounter < lastYear {
+                    if partners.count == 2 {
+                        print(yearCounter)
+                        let partner1Birthday = getBirthdayYear(dateOfBirth: partners[0].dateOfBirth ?? Date(), currentYear: yearCounter)
+                        print(partner1Birthday)
+                        let partner2Birthday = getBirthdayYear(dateOfBirth: partners[1].dateOfBirth ?? Date(), currentYear: yearCounter)
+                        //before appending to the array, this will check if the current birthday year is more or equal to the first date they met.
+                        //adds it onto the array
+                        if isBirthdayAfterDateMet(currentBirthdayYear: partner1Birthday) {
+                            allBirthDays.append(DateItem(title: "\(partners[0].name ?? "")'s Birthday", date: partner1Birthday))
+                        }
+                        if isBirthdayAfterDateMet(currentBirthdayYear: partner2Birthday) {
+                            allBirthDays.append(DateItem(title: "\(partners[1].name ?? "")'s Birthday", date: partner2Birthday))
+                        }
+                        
+                        //increases the counter
+                        yearCounter += 1
+                    } else {
+                        break
+                    }
+                }
+            }
+        }
+        return allBirthDays
+    }
+    
+    //this is a helper function that will return the current birthday with the specified year, it will be looped from first met until current year.
+    func getBirthdayYear(dateOfBirth: Date, currentYear: Int) -> Date {
         let calendar = Calendar.current
-        let yearOnly = calendar.component(.year, from: Date())
+        //let yearOnly = calendar.component(.year, from: Date())
         let monthOnly = calendar.component(.month, from: dateOfBirth)
         let dayOnly = calendar.component(.day, from: dateOfBirth)
-        
-        let newDateComp = DateComponents(calendar: calendar, year: yearOnly, month: monthOnly, day: dayOnly)
-        
+        let newDateComp = DateComponents(calendar: calendar, year: currentYear, month: monthOnly, day: dayOnly)
         return newDateComp.date!
+    }
+    
+    //this is a function that will return true if the current birthday year is greater then the date met so that on the home screen, it will only show birthdays after they met.
+    func isBirthdayAfterDateMet(currentBirthdayYear date: Date) -> Bool {
+        return date >= coupleDiaryMain.dateMet
     }
 }
 

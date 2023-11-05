@@ -21,6 +21,7 @@ struct AlbumView: View {
     @State var emptyData: Data? = nil //this is a state variable that will pass empty data as a binding.
     @State var placeholderId: UUID = UUID()
     @State var placeHolderDescription: String = "(write a short description)"
+    
     var body: some View {
         ScrollView {
             LazyVGrid(columns: columns, spacing: 40) {
@@ -61,6 +62,7 @@ struct ZStackContent: View {
     @Binding var date: Date
     @State var showEditAlert: Bool = false
     @State var itemId: UUID?
+    @State var editButtonDisabled: Bool = false
     var body: some View {
         ZStack(alignment: .top) {
             Rectangle()
@@ -154,7 +156,8 @@ struct ZStackContent: View {
                         .frame(width: 24, height: 24)
                         .padding(.top, 260)
                         .clipped()
-                }
+                }.disabled(editButtonDisabled)
+                //this is an alert that will be displayed, prompting the user to write a description.
             }.alert("Write your description", isPresented: $showEditAlert) {
                 TextField("", text: $newDescription)
                 Button("Cancel") {
@@ -184,7 +187,7 @@ struct ZStackContent: View {
                 }
             }
         }
-        
+        //the onchange modifer observes after the user selects a photo from the photo picker.
         .onChange(of: selectedImage) { oldImage, newImage in
             if let newImage = newImage {
                 Task {
@@ -194,7 +197,6 @@ struct ZStackContent: View {
                             //this will update the existing albumn item if the user wants to change an image.
                             if albumnImageData != nil {
                                 Task {
-                                    
                                     albumViewVM.updateImage(id: albumId, imageData: newImageData)
                                     //updates it on the view side
                                     albumnImageData = newImageData
@@ -203,13 +205,11 @@ struct ZStackContent: View {
                                 }
                                 
                             } else {
-                                onChangeCounter += 1
                                 //this will store the images to core data and reload it.
                                 let coupleMemory = CoupleMemoryStruct(id: UUID(), imageData: newImageData, description: "(Write a description)", memoryDate: date)
                                 albumViewVM.saveImage(coupleMemory: coupleMemory)
                                 //reloads the view model
                                 albumViewVM.loadAlbumItems(date: date)
-                                
                             }
                         }
                     } catch {
@@ -220,12 +220,20 @@ struct ZStackContent: View {
                     
                 }
             }
+            //this is an alert for error messages.
         }.alert(isPresented: $albumViewVM.showErrorAlert) {
             Alert(
                 title: Text(albumViewVM.alertTitle),
                 message: Text(albumViewVM.alertMessage)
             )
-        }
+        }.onAppear(perform: {
+            //this will disable the edit button if there are no images in this album item view.
+            if albumnImageData != nil {
+                editButtonDisabled = false
+            } else {
+                editButtonDisabled = true
+            }
+        })
     }
 }
 

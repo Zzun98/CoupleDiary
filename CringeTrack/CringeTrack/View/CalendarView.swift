@@ -80,7 +80,7 @@ struct CalendarView: View {
     //this function will be called when the day is tapped.
     func getDateFromView(day: Int) -> Date {
       
-        let calendar = Calendar.current
+        let calendar = Calendar(identifier: .gregorian)
         let startTime = calendar.startOfDay(for: currentMonth)
         let currentDateComp = calendar.dateComponents([.year, .month], from: startTime)
         let dateComp = DateComponents(calendar: calendar, year: currentDateComp.year!, month: currentDateComp.month!, day: 1)
