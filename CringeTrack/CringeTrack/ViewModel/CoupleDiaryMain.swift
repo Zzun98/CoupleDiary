@@ -40,36 +40,6 @@ class CoupleDiaryMain: ObservableObject {
         //returns the calculated days.
         return dateComp.day ?? 0
     }
-    @Published var imageSelection: PhotosPickerItem? = nil {
-        didSet {
-            //checks if selected.
-            if let imageSelection {
-               let progress = loadTransferable(from: imageSelection)
-            }
-        }
-    }
-    
-    
-    
-    private func loadTransferable(from imageSelection: PhotosPickerItem) -> Progress {
-        return imageSelection.loadTransferable(type: CoupleImage.self) { result in
-            DispatchQueue.main.async {
-                guard imageSelection == self.imageSelection else {
-                    print("failed to get selected item")
-                    return
-                }
-                
-                switch result {
-                case .success(let cImage?):
-                    self.currentImageState = .sucess(cImage.image)
-                case .success(nil):
-                    self.currentImageState = .empty
-                case .failure(let error):
-                    self.currentImageState = .failuer(error)
-                }
-            }
-        }
-    }
     
     //this will save the date met onto CoreData
     func processOnboarding() {

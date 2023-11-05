@@ -12,6 +12,7 @@ import PromiseKit
 
 enum QueryError: Error {
     case noRecords(message: String)
+    case noValue
 }
 
 class CoreDataManager {
@@ -77,7 +78,12 @@ class CoreDataManager {
                 fetchRequest.predicate = datePredicate
                 var coupleMemoryTemp = [CoupleMemoryStruct]()
                 for item in try context.fetch(fetchRequest) {
-                    let coupleMemory = CoupleMemoryStruct(id: item.memoryId, imageData: item.imageData, description: item.memoryDescription ?? "", memoryDate: item.memoryDate ?? Date())
+                    guard let memoryId = item.memoryId else {
+                        //error will throw is there is no memoryId.
+                        seal.reject(QueryError.noValue)
+                        return
+                    }
+                    let coupleMemory = CoupleMemoryStruct(id: memoryId, imageData: item.imageData, description: item.memoryDescription ?? "", memoryDate: item.memoryDate ?? Date())
                     //adds it onto the array
                     coupleMemoryTemp.append(coupleMemory)
                 }

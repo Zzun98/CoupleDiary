@@ -34,10 +34,7 @@
 		328692262AE7D48500E2122F /* AlbumViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 328692252AE7D48500E2122F /* AlbumViewModel.swift */; };
 		3287E4EE2AE4EB870010C1C8 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3287E4ED2AE4EB870010C1C8 /* Persistence.swift */; };
 		3287E4F02AE4F46F0010C1C8 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3287E4EF2AE4F46F0010C1C8 /* CoreDataManager.swift */; };
-		328F9A6B2AEE6AB90050A0CB /* Memory+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 328F9A692AEE6AB90050A0CB /* Memory+CoreDataClass.swift */; };
-		328F9A6C2AEE6AB90050A0CB /* Memory+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 328F9A6A2AEE6AB90050A0CB /* Memory+CoreDataProperties.swift */; };
 		329F01F52AF1A6A00073BFC3 /* PromiseKit in Frameworks */ = {isa = PBXBuildFile; productRef = 329F01F42AF1A6A00073BFC3 /* PromiseKit */; };
-		32DED41F2ADF69B6009981B2 /* CoupleImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32DED41D2ADF69B6009981B2 /* CoupleImage.swift */; };
 		32DED4202ADF69B6009981B2 /* CoupleMemoryStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32DED41E2ADF69B6009981B2 /* CoupleMemoryStruct.swift */; };
 		3BD6E8722AF0D905004A30E6 /* Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BD6E8712AF0D905004A30E6 /* Test.swift */; };
 /* End PBXBuildFile section */
@@ -105,9 +102,6 @@
 		3287E4ED2AE4EB870010C1C8 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
 		3287E4EF2AE4F46F0010C1C8 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		3287E4F12AE526AF0010C1C8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
-		328F9A692AEE6AB90050A0CB /* Memory+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Memory+CoreDataClass.swift"; path = "CringeTrack/CoreDataModel/Memory+CoreDataClass.swift"; sourceTree = "<group>"; };
-		328F9A6A2AEE6AB90050A0CB /* Memory+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Memory+CoreDataProperties.swift"; path = "CringeTrack/CoreDataModel/Memory+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		32DED41D2ADF69B6009981B2 /* CoupleImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoupleImage.swift; sourceTree = "<group>"; };
 		32DED41E2ADF69B6009981B2 /* CoupleMemoryStruct.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoupleMemoryStruct.swift; sourceTree = "<group>"; };
 		3BD6E8712AF0D905004A30E6 /* Test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Test.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -141,8 +135,6 @@
 		083E9DCA2ADB8BF900E7444A = {
 			isa = PBXGroup;
 			children = (
-				328F9A692AEE6AB90050A0CB /* Memory+CoreDataClass.swift */,
-				328F9A6A2AEE6AB90050A0CB /* Memory+CoreDataProperties.swift */,
 				083E9DD52ADB8BF900E7444A /* CringeTrack */,
 				083E9DE62ADB8BFB00E7444A /* CringeTrackTests */,
 				083E9DF02ADB8BFB00E7444A /* CringeTrackUITests */,
@@ -238,7 +230,6 @@
 		083E9E022ADC67F400E7444A /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				32DED41D2ADF69B6009981B2 /* CoupleImage.swift */,
 				32DED41E2ADF69B6009981B2 /* CoupleMemoryStruct.swift */,
 				084F0E7E2AEE65930008E625 /* MonthStruct.swift */,
 				083E9E0F2ADD1CD100E7444A /* DaysPassed.swift */,
@@ -417,12 +408,9 @@
 				3236D64C2AF0B31B005DA052 /* UserDefaultsManager.swift in Sources */,
 				087D87E12ADE59B900367925 /* NotificationView.swift in Sources */,
 				32DED4202ADF69B6009981B2 /* CoupleMemoryStruct.swift in Sources */,
-				32DED41F2ADF69B6009981B2 /* CoupleImage.swift in Sources */,
 				3BD6E8722AF0D905004A30E6 /* Test.swift in Sources */,
 				327C98C92AE26DA20030CDBE /* CringeTrack.xcdatamodeld in Sources */,
-				328F9A6B2AEE6AB90050A0CB /* Memory+CoreDataClass.swift in Sources */,
 				084F0E7F2AEE65940008E625 /* MonthStruct.swift in Sources */,
-				328F9A6C2AEE6AB90050A0CB /* Memory+CoreDataProperties.swift in Sources */,
 				087D87DF2ADDAC2100367925 /* AlbumView.swift in Sources */,
 				084F0E7D2AEE658C0008E625 /* CheckboxStyle.swift in Sources */,
 			);
