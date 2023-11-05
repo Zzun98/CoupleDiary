@@ -44,7 +44,9 @@ struct LogoView: View {
                     primaryButton: .default(Text("Allow"), action: {
                         navActive = true
                     }),
-                    secondaryButton: .cancel(Text("Don't Allow"))
+                    secondaryButton: .cancel(Text("Don't Allow")) {
+                        navActive = true
+                    }
                 )
             }.navigationDestination(isPresented: $navActive) {
                 DayWeMetView()
