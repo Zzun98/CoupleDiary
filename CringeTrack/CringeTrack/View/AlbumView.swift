@@ -12,28 +12,22 @@ struct AlbumView: View {
     @Environment(\.managedObjectContext) private var viewContext
     @EnvironmentObject var albumViewVM: AlbumViewModel
     let columns: [GridItem] = Array(repeating: .init(.flexible()), count: 1)
-    @State var showImagePicker: Bool = false
     @State var daysString: String
     @State var endDate: Date //this is a variable that will display the images based until the end date when tapped from the home view.
-    @State var imageData: Data?
-    @State var onChangeCounter: Int = 0
-    //@State var showEditAlert: Bool = false
     @State var emptyData: Data? = nil //this is a state variable that will pass empty data as a binding.
+    //these are the placeholder varibles due to binding being implemented so the project will compile.
     @State var placeholderId: UUID = UUID()
-    @State var placeHolderDescription: String = "(write a short description)"
+    @State var placeHolderDescription: String = ""
+    
     var body: some View {
         ScrollView {
             LazyVGrid(columns: columns, spacing: 40) {
                 
                 ForEach($albumViewVM.albumnData, id: \.self) { $item in
-                    Group {
-                        ZStackContent(albumnImageData: $item.imageData, description: $item.description, showImagePicker: $showImagePicker, selectedImage: albumViewVM.selectedImage, onChangeCounter: $onChangeCounter, albumId: $item.id, date: $endDate, itemId: item.id)
-                    }
-                    
+                    ZStackContent(albumnImageData: item.imageData, description: item.description,  selectedImage: albumViewVM.selectedImage, albumId: item.id, date: $endDate)
                 }
                 //this is an empty albumn image placeholder that will be used to add a new image.
-               
-                ZStackContent(albumnImageData: $emptyData, description: $placeHolderDescription, showImagePicker: $showImagePicker,  onChangeCounter: $onChangeCounter, albumId: $placeholderId, date: $endDate)
+                ZStackContent(date: $endDate)
             }
             .padding()
         }.onAppear {
@@ -48,19 +42,16 @@ struct AlbumView: View {
 }
 
 struct ZStackContent: View {
-    @Binding var albumnImageData: Data?
-    @Binding var description: String
-    @Binding var showImagePicker: Bool
+    @State var albumnImageData: Data?
+    @State var description: String?
     @State var selectedImage: PhotosPickerItem?
-    @Binding var onChangeCounter: Int
-    @Binding var albumId: UUID //this variable will be an optional one and used only if the details needs to be updated such as removing an image or changing it on the albumn.
+    @State var albumId: UUID? //this variable will be an optional one and used only if the details needs to be updated such as removing an image or changing it on the albumn.
     @EnvironmentObject var albumViewVM: AlbumViewModel
     @State var showMenu: Bool = false
-    
     @State var newDescription = ""
     @Binding var date: Date
     @State var showEditAlert: Bool = false
-    @State var itemId: UUID?
+    @State var editButtonDisabled: Bool = false
     var body: some View {
         ZStack(alignment: .top) {
             Rectangle()
@@ -82,7 +73,7 @@ struct ZStackContent: View {
             
             // Add action to add photo here
             // After uploading photo, add code to change description of each photo
-            if let imageData = albumnImageData  {
+            if let imageData = albumnImageData, let id = albumId  {
                 VStack {
                     PhotosPicker("Replace", selection: $selectedImage, matching: .images)
                         .font(.system(size: 20, weight: .semibold))
@@ -93,7 +84,7 @@ struct ZStackContent: View {
                     
                     Button {
                         Task {
-                            albumViewVM.deleteAlbumItem(id: albumId)
+                            albumViewVM.deleteAlbumItem(id: id)
                             //reloads the data model
                             albumViewVM.loadAlbumItems(date: date)
                         }
@@ -138,7 +129,7 @@ struct ZStackContent: View {
                 Button {
                     
                 } label: {
-                    Text(description)
+                    Text(description ?? "(write a short description)")
                 }
                 .font(.system(size: 20, weight: .semibold))
                 //.frame(width: UIScreen.main.bounds.width * 0.7, alignment: .topLeading)
@@ -154,7 +145,8 @@ struct ZStackContent: View {
                         .frame(width: 24, height: 24)
                         .padding(.top, 260)
                         .clipped()
-                }
+                }.disabled(editButtonDisabled)
+                //this is an alert that will be displayed, prompting the user to write a description.
             }.alert("Write your description", isPresented: $showEditAlert) {
                 TextField("", text: $newDescription)
                 Button("Cancel") {
@@ -162,19 +154,18 @@ struct ZStackContent: View {
                 }
                 Button("Confirm") {
                     if newDescription.count <= 200 {
-                        if albumnImageData != nil {
-                            Task {
-                                //updates the description on the view side
-                                description = newDescription
-                                //updates it on the backend.
-                                albumViewVM.updateImageDescription(id: albumId, imageDescription: newDescription)
-                            }
-                        } else {
-                            albumViewVM.showErrorAlert = true
-                            albumViewVM.alertTitle = "Unable to add description"
-                            albumViewVM.alertMessage = "Please add an image first."
-                        }
                         
+                        Task {
+                            //updates the description on the view side
+                            description = newDescription
+                            //updates it on the backend.
+                            //image description will only update if there is an album image in it.
+                            if let id = albumId {
+                                albumViewVM.updateImageDescription(id: id, imageDescription: newDescription)
+                            }
+                        }
+                                
+                            
                     } else {
                         //displays an alert if charcater count exceeds 200.
                         albumViewVM.showErrorAlert = true
@@ -184,7 +175,7 @@ struct ZStackContent: View {
                 }
             }
         }
-        
+        //the onchange modifer observes after the user selects a photo from the photo picker.
         .onChange(of: selectedImage) { oldImage, newImage in
             if let newImage = newImage {
                 Task {
@@ -192,24 +183,18 @@ struct ZStackContent: View {
                         if let newImageData = try await albumViewVM.convertToBinaryData(imageFromPhotoPicker: newImage) {
                             print("Image selection triggered.")
                             //this will update the existing albumn item if the user wants to change an image.
-                            if albumnImageData != nil {
+                            if let id = albumId {
                                 Task {
-                                    
-                                    albumViewVM.updateImage(id: albumId, imageData: newImageData)
+                                    albumViewVM.updateImage(id: id, imageData: newImageData)
                                     //updates it on the view side
                                     albumnImageData = newImageData
-                                    //reloads the vm
-                                    //albumnViewVM.loadAlbumItems(date: date)
                                 }
-                                
                             } else {
-                                onChangeCounter += 1
                                 //this will store the images to core data and reload it.
-                                let coupleMemory = CoupleMemoryStruct(id: UUID(), imageData: newImageData, description: "(Write a description)", memoryDate: date)
+                                let coupleMemory = CoupleMemoryStruct(id: UUID(), imageData: newImageData, description: description ?? "(Write a short description)", memoryDate: date)
                                 albumViewVM.saveImage(coupleMemory: coupleMemory)
                                 //reloads the view model
                                 albumViewVM.loadAlbumItems(date: date)
-                                
                             }
                         }
                     } catch {
@@ -220,32 +205,23 @@ struct ZStackContent: View {
                     
                 }
             }
+            //this is an alert for error messages.
         }.alert(isPresented: $albumViewVM.showErrorAlert) {
             Alert(
                 title: Text(albumViewVM.alertTitle),
                 message: Text(albumViewVM.alertMessage)
             )
-        }
+        }.onAppear(perform: {
+            //this will disable the edit button if there are no images in this album item view.
+            if albumnImageData != nil {
+                editButtonDisabled = false
+            } else {
+                editButtonDisabled = true
+            }
+        })
     }
 }
 
 #Preview {
-    AlbumView(daysString: "7 Days", endDate: Date())
+    AlbumView(daysString: "10 Days", endDate: Date())
 }
-/*
- if let haveUiImage = albumnImage {
- Image(uiImage: haveUiImage)
- .resizable()
- .aspectRatio(contentMode: .fill)
- .frame(width: 150, height: 150)
- .padding(.top, 110)
- .clipped()
- } else {
- Image("AddPhoto")
- .resizable()
- .aspectRatio(contentMode: .fill)
- .frame(width: 50, height: 50)
- .padding(.top, 110)
- .clipped()
- }
- })*/
