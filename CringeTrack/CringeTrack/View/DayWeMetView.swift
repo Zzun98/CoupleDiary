@@ -31,7 +31,7 @@ struct DayWeMetView: View {
             Button("Continue") {
                 //processes the onboarding
                 coupleDiaryMain.processOnboarding()
-            }
+            }.padding(44).buttonStyle(.bordered)
         }
     }
 }
