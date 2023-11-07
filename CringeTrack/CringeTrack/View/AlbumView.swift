@@ -74,27 +74,29 @@ struct ZStackContent: View {
             // Add action to add photo here
             // After uploading photo, add code to change description of each photo
             if let imageData = albumnImageData, let id = albumId  {
-                VStack {
-                    PhotosPicker("Replace", selection: $selectedImage, matching: .images)
-                        .font(.system(size: 20, weight: .semibold))
-                        .frame(width: 160, height: 40)
-                        .background(Color.white)
-                        .foregroundColor(.black)
-                        .cornerRadius(20)
-                    
-                    Button {
-                        Task {
-                            albumViewVM.deleteAlbumItem(id: id)
-                            //reloads the data model
-                            albumViewVM.loadAlbumItems(date: date)
-                        }
-                    } label: {
-                        Text("Delete")
+                ZStack{
+                    VStack {
+                        PhotosPicker("Replace", selection: $selectedImage, matching: .images)
                             .font(.system(size: 20, weight: .semibold))
                             .frame(width: 160, height: 40)
                             .background(Color.white)
                             .foregroundColor(.black)
                             .cornerRadius(20)
+                        
+                        Button {
+                            Task {
+                                albumViewVM.deleteAlbumItem(id: id)
+                                //reloads the data model
+                                albumViewVM.loadAlbumItems(date: date)
+                            }
+                        } label: {
+                            Text("Delete")
+                                .font(.system(size: 20, weight: .semibold))
+                                .frame(width: 160, height: 40)
+                                .background(Color.white)
+                                .foregroundColor(.black)
+                                .cornerRadius(20)
+                        }
                     }
                 }
                 //
