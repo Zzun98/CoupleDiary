@@ -36,6 +36,7 @@
 		3287E4F02AE4F46F0010C1C8 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3287E4EF2AE4F46F0010C1C8 /* CoreDataManager.swift */; };
 		329F01F52AF1A6A00073BFC3 /* PromiseKit in Frameworks */ = {isa = PBXBuildFile; productRef = 329F01F42AF1A6A00073BFC3 /* PromiseKit */; };
 		32DED4202ADF69B6009981B2 /* CoupleMemoryStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32DED41E2ADF69B6009981B2 /* CoupleMemoryStruct.swift */; };
+		3B5B17712AFA400100694833 /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B5B17702AFA400100694833 /* SettingsViewModel.swift */; };
 		3BD6E8722AF0D905004A30E6 /* Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BD6E8712AF0D905004A30E6 /* Test.swift */; };
 /* End PBXBuildFile section */
 
@@ -103,6 +104,7 @@
 		3287E4EF2AE4F46F0010C1C8 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		3287E4F12AE526AF0010C1C8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		32DED41E2ADF69B6009981B2 /* CoupleMemoryStruct.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoupleMemoryStruct.swift; sourceTree = "<group>"; };
+		3B5B17702AFA400100694833 /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
 		3BD6E8712AF0D905004A30E6 /* Test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Test.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -223,6 +225,7 @@
 				3241CB3D2AEF6965005235F9 /* CoupleDiaryMain.swift */,
 				087D87EC2ADF2EE400367925 /* CalendarHelper.swift */,
 				328692252AE7D48500E2122F /* AlbumViewModel.swift */,
+				3B5B17702AFA400100694833 /* SettingsViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -399,6 +402,7 @@
 				083E9DD92ADB8BFA00E7444A /* ContentView.swift in Sources */,
 				084F0E7B2AEE656D0008E625 /* BirthdayView.swift in Sources */,
 				083E9E0A2ADCDE2500E7444A /* CalendarView.swift in Sources */,
+				3B5B17712AFA400100694833 /* SettingsViewModel.swift in Sources */,
 				083E9E042ADC684F00E7444A /* LogoView.swift in Sources */,
 				083E9E082ADCDE0B00E7444A /* HomeView.swift in Sources */,
 				083E9E102ADD1CD100E7444A /* DaysPassed.swift in Sources */,

@@ -97,13 +97,14 @@ struct ZStackContent: View {
                             .cornerRadius(20)
                     }
                 }
-                
+                //
                 if let haveUiImage = UIImage(data: imageData) {
                     Image(uiImage: haveUiImage)
                         .resizable()
                         .aspectRatio(contentMode: .fill)
-                        .frame(width: 150, height: 150)
-                        .padding(.top, 110)
+                        .frame(width: 280, height: 220)
+                        .cornerRadius(10)
+                        .padding(.top, 24)
                         .clipped()
                 } else {
                     Image("AddPhoto")
