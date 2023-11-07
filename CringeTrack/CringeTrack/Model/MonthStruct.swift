@@ -17,12 +17,15 @@ extension Date {
         return range.count
     }
     
-    func firstDayOfMonth() -> Int {
+    func firstDayOfMonth() -> Date {
         let calendar = Calendar.current
-        let components = calendar.dateComponents([.year, .month, .day], from: self)
-        let firstDay = calendar.date(from: DateComponents(year: components.year, month: components.month, day: 1))!
-        return calendar.component(.weekday, from: firstDay)
+        let components = calendar.dateComponents([.year, .month], from: self)
+        return calendar.date(from: components)!
     }
     
-   
+    func dayOfWeek() -> Int {
+        let calendar = Calendar.current
+        let components = calendar.dateComponents([.weekday], from: self)
+        return components.weekday! - 1 // Adjust to 0-index for Sunday
+    }
 }
